@@ -486,3 +486,30 @@ body {
   width: 84px;
   height: auto;
 }
+
+/* Author block */
+.lf-author {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin: 4px 0 8px;
+}
+.lf-author-photo {
+  flex: none;
+  width: 168px;
+  height: 168px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.lf-author-bio p:first-child {
+  margin-top: 0;
+}
+@media (max-width: 600px) {
+  .lf-author {
+    flex-direction: column;
+  }
+  .lf-author-photo {
+    width: 140px;
+    height: 140px;
+  }
+}
