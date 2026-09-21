@@ -7,6 +7,22 @@ export function Footer() {
       <p>
         © {year} Invocation Inc. Not medical advice.
       </p>
+      <p className="lf-imprint-line">
+        <img
+          src="/img/invocation-logo.png"
+          alt="Invocation Inc"
+          width={84}
+          height={20}
+          className="lf-imprint-logo-sm"
+        />
+        <span>
+          An{" "}
+          <a href="https://invocationinc.com/">
+            Invocation Inc
+          </a>{" "}
+          publication
+        </span>
+      </p>
       <p>
         <Link href="/privacy">Privacy</Link>
         {" · "}

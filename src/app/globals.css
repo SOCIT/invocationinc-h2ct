@@ -465,3 +465,24 @@ body {
 .inner-page a {
   color: var(--red);
 }
+
+/* Invocation Inc imprint mark */
+.lf-imprint-mark {
+  display: inline-flex;
+  align-items: center;
+}
+.lf-imprint-logo {
+  display: block;
+  width: 130px;
+  height: auto;
+}
+.lf-imprint-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lf-imprint-logo-sm {
+  display: block;
+  width: 84px;
+  height: auto;
+}
