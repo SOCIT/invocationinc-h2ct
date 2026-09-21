@@ -1,7 +1,7 @@
 name: Where is the workbook?
 description: Buyer cannot find Companion workbook or Time Log after purchase
 title: "[fulfillment] Workbook / Time Log locate"
-labels: ["cs", "fulfillment"]
+labels: ["delivery"]
 body:
   - type: input
     id: email

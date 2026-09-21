@@ -1,7 +1,7 @@
 name: Delivery — missing PDF
 description: Buyer paid but book / workbook / Time Log did not arrive
 title: "[delivery] Missing download after payment"
-labels: ["cs", "delivery"]
+labels: ["delivery"]
 body:
   - type: markdown
     attributes:

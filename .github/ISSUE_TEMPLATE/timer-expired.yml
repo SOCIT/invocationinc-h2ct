@@ -1,7 +1,7 @@
 name: Timer expired / price mismatch
 description: Offer timer hit zero or checkout price does not match the page
 title: "[timer] Price or countdown mismatch"
-labels: ["cs", "offer"]
+labels: ["content"]
 body:
   - type: markdown
     attributes:

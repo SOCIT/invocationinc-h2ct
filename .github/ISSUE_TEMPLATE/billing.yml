@@ -1,7 +1,7 @@
 name: Billing / refund / receipt
 description: Charge, refund, receipt, or portal access — portal first
 title: "[billing] Portal / refund / receipt"
-labels: ["cs", "billing"]
+labels: ["billing"]
 body:
   - type: markdown
     attributes:
