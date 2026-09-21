@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eight Weeks to Happy — Invocation Inc</title>
+  <style>
+    :root {
+      --paper: #f3eadc;
+      --ink: #140e0c;
+      --soft: #3d332c;
+      --red: #d10f28;
+      --red2: #9a0b1e;
+      --line: #d7cbb8;
+      --white: #fffaf2;
+      --strike: #8a7a6a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Palatino Linotype", serif;
+      font-size: 21px;
+      line-height: 1.58;
+    }
+    .bar {
+      background: #111;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-align: center;
+      padding: 10px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .bar span { color: #ffe08a; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 18px;
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    header a { color: var(--red); font-weight: 800; text-decoration: none; }
+    .wrap { max-width: 740px; margin: 0 auto; padding: 32px 18px 140px; }
+    .stamp { font-family: Arial, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+    h1 { font-size: clamp(34px, 7vw, 52px); line-height: 1.12; margin: 10px 0 18px; }
+    h2 { font-size: 32px; line-height: 1.2; margin: 56px 0 16px; }
+    h3 { font-size: 24px; margin: 32px 0 12px; }
+    p { margin: 0 0 18px; }
+    .lead { font-size: 24px; color: var(--soft); }
+    .cta, .offer-box {
+      background: #1a1210;
+      color: #fffaf2;
+      padding: 22px 18px;
+      margin: 32px 0;
+      text-align: center;
+    }
+    .cta p, .offer-box p { color: #fffaf2; }
+    .btn {
+      display: block;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      padding: 18px 16px;
+      margin: 10px 0 0;
+    }
+    .btn-red { background: var(--red); color: #fff; font-size: 18px; }
+    .btn-red:hover { background: var(--red2); }
+    .btn-ghost { background: transparent; color: #fff; border: 2px solid #fff; font-size: 15px; }
+    .tiny { font-family: Arial, sans-serif; font-size: 13px; color: #e7dcc8; margin: 10px 0 0; }
+    .room, .letter, .stackline, .faq {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 20px;
+      margin: 16px 0;
+    }
+    .week { border-left: 5px solid var(--red); padding: 6px 0 6px 16px; margin: 20px 0; }
+    .week b { display: block; font-family: Arial, sans-serif; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+    .price-row { font-family: Arial, sans-serif; margin: 8px 0 14px; }
+    .was { text-decoration: line-through; color: #c8b8a4; font-size: 28px; margin-right: 10px; }
+    .now { color: #ff3b54; font-size: 48px; font-weight: 900; }
+    .badge { display: inline-block; background: var(--red); color: #fff; font-family: Arial, sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 5px 8px; }
+    .warn { background: var(--red); color: #fff; padding: 28px 22px; margin: 40px 0; }
+    .warn h2 { color: #fff; margin-top: 0; }
+    .sticky {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: #111; padding: 8px 12px 10px; z-index: 60;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .sticky .t { color: #ffe08a; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+    .sticky a {
+      background: var(--red); color: #fff; width: min(720px, 100%);
+      text-align: center; text-decoration: none; font-family: Arial, sans-serif;
+      font-weight: 900; padding: 14px 12px; text-transform: uppercase;
+    }
+    footer { font-family: Arial, sans-serif; font-size: 13px; color: var(--soft); }
+    .center { text-align: center; }
+    ol, ul { padding-left: 1.2em; }
+    li { margin: 0 0 10px; }
+    .ps { font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="bar">STACK IS $97 — TODAY IT IS $47 — TIMER: <span id="timerTop">24:00:00</span></div>
+  <header>
+    <div>Invocation Inc · Human Performance Engineers</div>
+    <a href="#offer">Take the $47 Stack</a>
+  </header>
+  <main class="wrap">
+    <p class="stamp">Stop. If you live in a bad climate, bursts, or “I function but happier won’t stick” — this page is about you.</p>
+    <h1>You don’t have a motivation problem. You have an untrained switch. Eight weeks of presses will make that obvious.</h1>
+    <p class="lead">Coaching asked you to want it. Therapy asked you to wait. The posters asked you to smile on purpose. None of them put a button on your body and a number on the day.</p>
+    <p>This is Eight Weeks to Happy from Invocation Inc. Book. Workbook. Companion app. One system. The book is done. The workbook is the Work. The app is in beta and already logging turns. Instant files. Instant app. No monthly leash.</p>
+    <p>The Stack is <strong>$97</strong>. Today it is <strong>$47</strong> because we do not have a wall of testimonials and we will not invent one. When scoreboards come back from people who actually pressed, the number climbs: $57 then $67 then $77 then $87 then the $97 it already is. The clock started when you opened this page. Twenty-four hours.</p>
+    <div class="cta">
+      <p style="margin:0;font-family:Arial,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;">The $97 Stack is $47 for</p>
+      <p style="font-family:Arial,sans-serif;font-size:34px;font-weight:900;margin:6px 0 12px;" id="timerHero">24:00:00</p>
+      <a class="btn btn-red" href="#offer">Yes. Give me the Stack — $47</a>
+      <a class="btn btn-ghost" href="#book">I only want the book — $9.99</a>
+      <p class="tiny">Instant book + workbook + app. Skip the collarbone and the guarantee dies.</p>
+    </div>
+    <h2>Hook: the room does not care that you understood the method</h2>
+    <p>You already know which room you live in. You have known since the second paragraph of your own life.</p>
+    <div class="room"><strong>Room one — climate.</strong> The baseline is bad. Anger. Anxiety. Depression. Or the quiet version nobody puts on a mug: you do not trust yourself to do the thing in front of you. The day starts behind. Coffee does not fix climate. A walk does not fix climate. “I’ll start Monday” is climate talking.</div>
+    <div class="room"><strong>Room two — bursts.</strong> Fine until you are not. Snap. Panic. You hand the state to whoever is standing there like it is their job to hold it. Then you apologize. Then you wait to feel like a better person. Then it happens again in a grocery store parking lot.</div>
+    <div class="room"><strong>Room three — function.</strong> You pay bills. You show up. People think you are fine. You cannot make happier stick on command. You look successful and feel like a rented suit.</div>
+    <p>If a slogan fixed this, the rooms would be empty and the self-help aisle would be a museum.</p>
+    <p>You have done the posters. The five-minute journals that became five-week paperweights. The app with the pastel breathing circle. The podcast that made you nod in the car and change nothing in the kitchen.</p>
+    <p>Here is the ugly part: understanding is not the switch. You can explain your childhood at dinner and still wake up in the same climate. Insight is cheap. A mark on a scoreboard is not.</p>
+    <div class="cta">
+      <a class="btn btn-red" href="#offer">I am done nodding. Stack — $47</a>
+    </div>
+    <h2>Story: how a performance number beats a feeling</h2>
+    <p>Invocation Inc is not a wellness brand. We are Human Performance Engineers. Mood is treated like a number on a machine: observe it, mark it, change the inputs, watch the output. That sentence makes polite people uncomfortable. Good. Polite did not get you out of the room.</p>
+    <p>The old story is that you must feel ready, then act. That story is how Room One keeps a ten-year lease.</p>
+    <p>The working story is older than a waiting list. Conditioning. A physical cue. A log that does not care about your narrative. A sentence spoken in the present tense while the critical faculty is busy being annoyed at you.</p>
+    <p>SmileBell™ and CalmBell™ live on the collarbone. You press. You fire happy or calm on purpose — not when the universe grants permission. Then you mark the turn. Six turns. Morning, lunch, end of work, dinner, evening, bed. Plus, zero, or minus. Spike or not. Bell fired or not.</p>
+    <p>At the end of the week you do the math the workbook will not let you skip:</p>
+    <p class="center"><strong>Number = positives − (negatives × 2)</strong></p>
+    <p>If you hate the number, you told the truth. That is the first honest day some people have had in years. We do not hug you for it. We tell you to use it.</p>
+    <p>Weeks 1–3 install the engine. Weeks 4–8 aim it at Self, Relationships, Career, Money, then Input = Output. The book tells you why the present tense is not a cute affirmation. The workbook makes you write the line. The app makes you stop “forgetting” Turn 4.</p>
+    <p>That is the whole plot. No mountain retreat. A switch, a tally, a sentence, a list of unfinished work with a time on it.</p>
+    <p>Does it work? The system works when it is pressed. We will not paste fake names and five stars under this paragraph to help you feel safer about $47. When real people send real scoreboards, the price goes up. That is the only testimonial policy on this page.</p>
+    <div class="cta">
+      <p class="tiny" style="margin-top:0">Clock still running.</p>
+      <p style="font-family:Arial,sans-serif;font-size:28px;font-weight:900;margin:0 0 12px;" id="timerStory">24:00:00</p>
+      <a class="btn btn-red" href="#offer">Put the switch on my collarbone — $47</a>
+    </div>
+    <h2>The villains (they are not evil. They are slow.)</h2>
+    <p><strong>Coaching</strong> needs desire. If desire were enough you would not be on a landing page bargaining with a red button.</p>
+    <p><strong>Therapy</strong> is slow by design. Some of you need it. If you need a clinician, get one first. Then come back. We are not competing with your psychiatrist. We are not a substitute. We are a practice.</p>
+    <p><strong>Pharma</strong> can be a recurring bandaid for a mind-driven problem. We do not sell a refill. We sell eight weeks of presses.</p>
+    <p><strong>The poster industry</strong> sold you the destination photo and hid the sets. SmileBell™ is not a poster. If you will not touch your own collarbone, the rest of this page is stationery.</p>
+    <div class="letter">
+      <p style="margin:0"><strong>Plain talk, once:</strong> This is not therapy. Not medical advice. Not a cure for depression, anxiety, panic, trauma, or anything a licensed person treats. Bells are a temporary nudge — not permanent happiness, not permanent calm. Results require the presses. Invocation Inc is not a licensed medical or therapy practice.</p>
+    </div>
+    <h2>The unique mechanism (memorize this or leave)</h2>
+    <ol>
+      <li><strong>Elicit.</strong> SmileBell™ or CalmBell™ on the collarbone. Classical conditioning. Week 1 is almost nothing but this. Twenty-one Smile sets is the aim, not a vibe.</li>
+      <li><strong>Mark.</strong> Six turns a day. −2 / 0 / +1. Spikes get a flag. Bell fired: Smile, Calm, or blank. Blank is a confession.</li>
+      <li><strong>Speak.</strong> Present-tense Change Statement. I am / People believe / I do. Out loud. Not in your notes app where cowardice lives.</li>
+      <li><strong>Do.</strong> A real DoTo list. Unfinished work with a when. Not a chore list you clear to feel busy.</li>
+    </ol>
+    <p>After Week 1 the daily stack is stupid on purpose: fire calm or happy → log → say the line → do the Three Thing.</p>
+    <p>If change took time, traumatic events would not install fear overnight. Instant Betterment is not magic. It is refusing to wait for a feeling that was never going to give you permission.</p>
+    <div class="cta">
+      <a class="btn btn-red" href="#offer">I understand the mechanism. Take my $47</a>
+    </div>
+    <h2>Why we will not sell you the workbook by itself</h2>
+    <p>Because that is how amateurs buy paper and stay in the room.</p>
+    <p>The book is the Why. Without it you treat the marks like a mood diary and then declare the method “didn’t work.”</p>
+    <p>The workbook is the Work. Without it you “got a lot out of the book” and changed nothing.</p>
+    <p>The app is the machine. Without it you miss Turn 3, Turn 5, and Sunday, then you cook the scoreboard so you can keep your story.</p>
+    <p>Three objects. One system. The book is the souvenir. The Stack is the buy. We are not putting you on a call with a capital team. We are putting a Bell on your collarbone and a log on your phone.</p>
+    <p>So there is no workbook-only button. You want the Work, you take the Stack. Book + Workbook + App. That is the product.</p>
+    <p>You can still buy only the book for $9.99. We will sell it to you. We will also tell you, in writing, that it will not be enough. That is not a tease. That is the warning label.</p>
+    <h2>The eight weeks — no montage</h2>
+    <div class="week"><b>Week 0 — Setup</b>Name. Dates. Room. Color. Symbol. The sentence that brought you here. Six turns. Mark code. The app is where the log lives.</div>
+    <div class="week"><b>Week 1 — Install</b>Collarbone. First set. Second set. Tests: none / subtle / clear. Tally Calm sets, Smile sets, fires. If you skip Week 1, Weeks 4–8 are fan fiction.</div>
+    <div class="week"><b>Week 2 — Measure</b>Six marks. Spikes. Bell after the stroke. Do not invent pluses to look recovered.</div>
+    <div class="week"><b>Week 3 — Math + dose</b>Count +, 0, −. Run the formula. Schedule elicitation off the number, not off the weather in your chest.</div>
+    <div class="week"><b>Week 4 — Self</b>Forgiveness work on a timeline. First Change Statement aimed at you. Present tense. A line you can say while washing a plate.</div>
+    <div class="week"><b>Week 5 — Relationships</b>Unspoken expectations out of the dark. A statement for how the people closest to you experience you.</div>
+    <div class="week"><b>Week 6 — Career + DoTo</b>Work statement. The unfinished pile, dated. Career without a DoTo is a TED talk you give yourself in the shower.</div>
+    <div class="week"><b>Week 7 — Money</b>Present-tense money line. Aimed invocations. Practice past the part of you that wants to negotiate with reality.</div>
+    <div class="week"><b>Week 8 — Input = Output</b>Speak the full stack. Surround the hours with what you want out. The files end. The presses do not.</div>
+    <div class="cta">
+      <a class="btn btn-red" href="#offer">Start at Week 1 — $47 Stack</a>
+    </div>
+    <h2>Who should buy. Who should close the tab.</h2>
+    <h3>Buy if</h3>
+    <ul>
+      <li>You can point to Room 1, 2, or 3 without a TED talk.</li>
+      <li>You will touch the collarbone even when it feels stupid.</li>
+      <li>You will mark six turns even when the mark is ugly.</li>
+      <li>You will say a present-tense line out loud like an adult.</li>
+      <li>You sell, lead, parent, partner, or work next to humans and need language that moves a room instead of decorating it.</li>
+    </ul>
+    <h3>Leave if</h3>
+    <ul>
+      <li>You wanted a spell.</li>
+      <li>You wanted us to want it for you.</li>
+      <li>You need a clinician first. Go. Then come back.</li>
+      <li>You will not press. Reading is not pressing.</li>
+      <li>Fourth room: some wiring will not hold this method. That is a filter, not a dare.</li>
+    </ul>
+    <h2 id="offer">The offer — stack it, then look at $47 like it is small</h2>
+    <p>Restack so you stop pricing the last file.</p>
+    <div class="stackline">EW2H Book — the Why. Mechanism, map, why present tense is not a poster. <strong>Anchor $29</strong></div>
+    <div class="stackline">EW2H Workbook — the Work. Eight weeks of pages you actually fill. <strong>Anchor $97</strong></div>
+    <div class="stackline">Companion app — beta, live, same cards as the workbook, on-device, no login, no subscription. <strong>Anchor $147</strong></div>
+    <p>Costume-jewelry total: $273. Actual offer price when proof exists: <strong>$97</strong>.</p>
+    <p>Today you do not pay $97.</p>
+    <div class="offer-box">
+      <span class="badge">24-hour window from the second you opened this page</span>
+      <h3 style="margin-top:14px">THE STACK</h3>
+      <div class="price-row"><span class="was">$97</span><span class="now">$47</span></div>
+      <p>Book + Workbook + App. Instant access. One system.</p>
+      <ul style="text-align:left;display:inline-block;">
+        <li>EW2H book (PDF + EPUB)</li>
+        <li>EW2H workbook (PDF)</li>
+        <li>Companion app — Week 0, Week 1 Bell tally, Weeks 2–8 log, Alter, scoreboard</li>
+        <li>The ugly guarantee below</li>
+      </ul>
+      <p style="font-family:Arial,sans-serif;font-size:30px;font-weight:900;" id="timerOffer">24:00:00</p>
+      <a class="btn btn-red" href="#buy">Unlock the $47 Stack now</a>
+      <p class="tiny">When testimonials land, this button becomes $57, then $67, then $77, then $87, then $97. The clock is not a metaphor.</p>
+    </div>
+    <div class="offer-box" id="book" style="background:#3b322c;">
+      <h3>THE WHY — book only</h3>
+      <div class="price-row"><span class="now" style="color:#fff;font-size:36px;">$9.99</span></div>
+      <p>The book. No workbook. No app. You will still need the Work.</p>
+      <a class="btn btn-ghost" href="#buy-book">Just the book — $9.99</a>
+    </div>
+    <h2>If-all (say these out loud if you are still scrolling)</h2>
+    <p>If all this did was put six honest marks on a day you usually fake — is $47 expensive?</p>
+    <p>If all this did was give you a switch you can fire without waiting to feel spiritual — worth it?</p>
+    <p>If all this did was stop you transferring the burst onto the nearest human for one week — cheap.</p>
+    <p>If you press, mark, and speak for eight weeks and the scoreboard is still the room you walked in with: you get the $47 back. That sentence is the whole close.</p>
+    <div class="cta">
+      <a class="btn btn-red" href="#buy">Fine. $47. Load the Stack.</a>
+    </div>
+    <h2>Guarantee / anti-guarantee</h2>
+    <ul>
+      <li><strong>File broken:</strong> won’t open — replace or refund.</li>
+      <li><strong>You did the work:</strong> Bells pressed, six marks a day, statements spoken, eight weeks, scoreboard still dead — email us. Refund.</li>
+      <li><strong>You skipped the collarbone:</strong> no refund. You bought a story and refused the switch. That is not a product defect.</li>
+    </ul>
+    <h2>The questions you are about to email anyway</h2>
+    <div class="faq"><strong>I’ll start when I feel ready.</strong><br>Ready is the climate. The Bell does not require it.</div>
+    <div class="faq"><strong>I journal already.</strong><br>A journal is a diary. This is a tally with a formula that punishes fake pluses.</div>
+    <div class="faq"><strong>Is the app a subscription?</strong><br>No. Included in the Stack. Data on the device. Beta means we sharpen the cards. It does not mean we bill you next month.</div>
+    <div class="faq"><strong>Why $47 if it is “really” $97?</strong><br>Because we will not invent reviews. Price tracks proof. You are early. Early is a discount, not a personality.</div>
+    <div class="faq"><strong>Why a timer?</strong><br>Because without a clock you will screenshot this page, feel informed, and stay in the room. Twenty-four hours from first open. Refresh does not reset the debt.</div>
+    <div class="faq"><strong>Workbook only?</strong><br>No. Stop asking.</div>
+    <div class="faq"><strong>Is this therapy?</strong><br>No.</div>
+    <div class="warn">
+      <h2>Warning</h2>
+      <p>Close this tab and nothing on your collarbone changes. The room keeps the lease. The people standing near you keep catching the burst. The scoreboard stays imaginary.</p>
+      <p style="margin:0">$97 becomes the price. $47 is the button that exists while the clock in the black bar is still counting. After that, you get to be the person who “was going to.”</p>
+    </div>
+    <h2 id="buy">Last stack</h2>
+    <p>Book. Workbook. App. One system. $97. Today $47. Book-only $9.99 if you insist on leaving half the weapon in the box.</p>
+    <div class="cta">
+      <p style="font-family:Arial,sans-serif;font-weight:900;font-size:28px;margin:0 0 8px;" id="timerFinal">24:00:00</p>
+      <a class="btn btn-red" href="#offer">Get the Stack — $47</a>
+      <a class="btn btn-ghost" href="#book" id="buy-book">Book only — $9.99</a>
+      <p class="tiny">Invocation Inc. Press. Mark. Speak. Do.</p>
+    </div>
+    <p class="ps">P.S. If you are still here, you are not confused. You are negotiating with a feeling that has never once paid rent. Hit the red button.</p>
+    <p class="ps">P.P.S. When the testimonials exist we raise the number in public. You do not get a sympathy coupon for hesitating on a Saturday.</p>
+    <footer>
+      <p>© Invocation Inc. SmileBell™ / CalmBell™. Not therapy. Not medical advice.</p>
+      <p>Approved longform v2. Port into Next.js landing. Timer: localStorage ew2h_stack_deadline 24h.</p>
+    </footer>
+  </main>
+  <div class="sticky">
+    <div class="t">$97 → $47 ends in <span id="timerSticky">24:00:00</span></div>
+    <a href="#offer">Take the Stack — $47</a>
+  </div>
+  <script>
+    (function () {
+      var KEY = "ew2h_stack_deadline";
+      var DAY = 24 * 60 * 60 * 1000;
+      var now = Date.now();
+      var saved = parseInt(localStorage.getItem(KEY) || "0", 10);
+      if (!saved || saved < now) {
+        saved = now + DAY;
+        localStorage.setItem(KEY, String(saved));
+      }
+      var ids = ["timerTop", "timerHero", "timerStory", "timerOffer", "timerFinal", "timerSticky"];
+      function pad(n) { return String(n).padStart(2, "0"); }
+      function tick() {
+        var left = saved - Date.now();
+        if (left < 0) left = 0;
+        var h = Math.floor(left / 3600000);
+        var m = Math.floor((left % 3600000) / 60000);
+        var s = Math.floor((left % 60000) / 1000);
+        var text = pad(h) + ":" + pad(m) + ":" + pad(s);
+        ids.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = text;
+        });
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</body>
+</html>

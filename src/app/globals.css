@@ -1,0 +1,467 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f3eadc;
+  --ink: #140e0c;
+  --soft: #3d332c;
+  --red: #d10f28;
+  --red2: #9a0b1e;
+  --line: #d7cbb8;
+  --white: #fffaf2;
+  --strike: #8a7a6a;
+  --navy: #140e0c;
+  --brand-red: #d10f28;
+}
+
+@theme inline {
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-soft: var(--soft);
+  --color-navy: var(--navy);
+  --color-brand-red: var(--brand-red);
+  --color-line: var(--line);
+  --color-cream: var(--white);
+  --color-strike: var(--strike);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Palatino Linotype", Palatino, serif;
+  font-size: 21px;
+  line-height: 1.58;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.lf-bar {
+  background: #111;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 10px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.lf-bar time,
+.lf-bar .lf-timer {
+  color: #ffe08a;
+}
+
+.lf-site-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 18px;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lf-site-header a {
+  color: var(--red);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.lf-site-header a:hover {
+  color: var(--red2);
+}
+
+.lf-wrap {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 32px 18px 140px;
+}
+
+.lf-stamp {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.lf-wrap h1 {
+  font-size: clamp(34px, 7vw, 52px);
+  line-height: 1.12;
+  margin: 10px 0 18px;
+}
+
+.lf-wrap h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 56px 0 16px;
+}
+
+.lf-wrap h3 {
+  font-size: 24px;
+  margin: 32px 0 12px;
+}
+
+.lf-wrap p {
+  margin: 0 0 18px;
+}
+
+.lf-lead {
+  font-size: 24px;
+  color: var(--soft);
+}
+
+.lf-cta,
+.lf-offer-box {
+  background: #1a1210;
+  color: #fffaf2;
+  padding: 22px 18px;
+  margin: 32px 0;
+  text-align: center;
+}
+
+.lf-cta p,
+.lf-offer-box p {
+  color: #fffaf2;
+}
+
+.lf-btn {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 18px 16px;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+.lf-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.lf-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.lf-btn-red {
+  background: var(--red);
+  color: #fff;
+  font-size: 18px;
+}
+
+.lf-btn-red:hover:not(:disabled) {
+  background: var(--red2);
+}
+
+.lf-btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 15px;
+}
+
+.lf-btn-ghost:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.08);
+}
+
+.lf-tiny {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #e7dcc8;
+  margin: 10px 0 0;
+}
+
+.lf-room,
+.lf-letter,
+.lf-stackline,
+.lf-faq {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 20px;
+  margin: 16px 0;
+}
+
+.lf-week {
+  border-left: 5px solid var(--red);
+  padding: 6px 0 6px 16px;
+  margin: 20px 0;
+}
+
+.lf-week b {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.lf-price-row {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 8px 0 14px;
+}
+
+.lf-was {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  color: #c8b8a4;
+  font-size: 28px;
+  margin-right: 10px;
+}
+
+.lf-now {
+  color: #ff3b54;
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.lf-stack-price {
+  white-space: nowrap;
+}
+
+.lf-stack-price-compact .lf-was,
+.lf-cta-kicker .lf-was,
+.lf-bar .lf-was,
+.lf-site-header .lf-was,
+.lf-sticky .t .lf-was,
+.lf-btn .lf-was {
+  font-size: inherit;
+  font-weight: 700;
+  margin-right: 0.35em;
+}
+
+.lf-stack-price-compact .lf-now,
+.lf-cta-kicker .lf-now,
+.lf-bar .lf-now,
+.lf-site-header .lf-now,
+.lf-sticky .t .lf-now,
+.lf-btn .lf-now {
+  font-size: inherit;
+}
+
+/* Cream / paper surfaces: muted strike, fat red now-price */
+.lf-site-header .lf-was {
+  color: var(--strike);
+  text-decoration-color: var(--strike);
+}
+
+.lf-site-header .lf-now {
+  color: var(--red);
+}
+
+/* Black bars: muted cream strike so $97 stays visible */
+.lf-bar .lf-was,
+.lf-sticky .t .lf-was {
+  color: rgb(255 250 242 / 0.7);
+  text-decoration-color: rgb(255 250 242 / 0.85);
+}
+
+.lf-bar .lf-now,
+.lf-sticky .t .lf-now {
+  color: #ff3b54;
+}
+
+/* Red CTAs: muted white strike — brown strike vanishes on #d10f28 */
+.lf-btn-red .lf-was {
+  color: rgb(255 255 255 / 0.78);
+  text-decoration-color: rgb(255 255 255 / 0.92);
+  text-decoration-thickness: 2.5px;
+}
+
+.lf-btn-red .lf-now {
+  color: #fff;
+}
+
+.lf-cta-kicker .lf-was {
+  color: #c8b8a4;
+}
+
+.lf-cta-kicker .lf-now {
+  color: #ff3b54;
+}
+
+.lf-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 8px;
+}
+
+.lf-warn {
+  background: var(--red);
+  color: #fff;
+  padding: 28px 22px;
+  margin: 40px 0;
+}
+
+.lf-warn h2 {
+  color: #fff;
+  margin-top: 0;
+}
+
+.lf-warn p {
+  color: #fff;
+}
+
+.lf-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #111;
+  padding: 8px 12px 10px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lf-sticky .t {
+  color: #ffe08a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.lf-sticky-buy {
+  width: min(720px, 100%);
+}
+
+.lf-sticky-buy .lf-btn {
+  margin: 0;
+  width: 100%;
+  padding: 14px 12px;
+}
+
+.lf-sticky-buy .lf-tiny {
+  text-align: center;
+}
+
+.lf-footer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: var(--soft);
+}
+
+.lf-footer a {
+  color: var(--soft);
+}
+
+.lf-footer a:hover {
+  color: var(--ink);
+}
+
+.lf-center {
+  text-align: center;
+}
+
+.lf-wrap ol,
+.lf-wrap ul {
+  padding-left: 1.2em;
+}
+
+.lf-wrap li {
+  margin: 0 0 10px;
+}
+
+.lf-ps {
+  font-style: italic;
+}
+
+.lf-offer-book {
+  background: #3b322c;
+}
+
+.lf-cta-kicker {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lf-timer-hero {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  margin: 6px 0 12px;
+}
+
+.lf-timer-story {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0 0 12px;
+}
+
+.lf-timer-offer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.lf-timer-final {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.lf-buy {
+  width: 100%;
+}
+
+.lf-buy .lf-tiny {
+  text-align: center;
+}
+
+.inner-page {
+  font-size: 18px;
+}
+
+.inner-page h1 {
+  font-size: clamp(28px, 5vw, 40px);
+  margin: 0 0 18px;
+}
+
+.inner-page a {
+  color: var(--red);
+}
