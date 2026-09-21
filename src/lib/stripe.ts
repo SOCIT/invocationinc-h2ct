@@ -26,6 +26,14 @@ export function getStripePriceId(productId: ProductId): string | null {
   return priceId || null;
 }
 
+/** Price ID for the expired-window rung (next $10 step up the ladder). */
+export function getStripeRung2PriceId(productId: ProductId): string | null {
+  const product = getProduct(productId);
+  if (!product) return null;
+  const priceId = process.env[product.stripePriceRung2EnvKey];
+  return priceId || getStripePriceId(productId);
+}
+
 export function getSiteUrl(): string {
   return (
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||

@@ -16,8 +16,13 @@ export interface Product {
   /** List / strike price when different from charge price. */
   listPriceDisplay?: string;
   listPriceCents?: number;
+  /** Price shown/charged after the visitor's 24h window expires. */
+  rung2PriceDisplay: string;
+  rung2PriceCents: number;
   /** Env var name holding the Stripe Price ID for this offer. */
   stripePriceEnvKey: "STRIPE_PRICE_BOOK";
+  /** Env var name holding the Stripe Price ID for the expired-window rung. */
+  stripePriceRung2EnvKey: "STRIPE_PRICE_RUNG2";
   /**
    * Optional Stripe Payment Link. Leave empty to use /api/checkout.
    * Prefer API checkout + env Price IDs.
@@ -51,7 +56,14 @@ export const products: Product[] = [
       "The complete book plus the H2CT Companion workbook and the Time Log. Instant PDF downloads.",
     priceDisplay: "$47",
     priceCents: 4700,
+    listPriceDisplay: "$97",
+    listPriceCents: 9700,
+    /** Price shown/charged after the visitor's 24h window expires. */
+    rung2PriceDisplay: "$57",
+    rung2PriceCents: 5700,
     stripePriceEnvKey: "STRIPE_PRICE_BOOK",
+    /** Env var name holding the Stripe Price ID for the expired-window rung. */
+    stripePriceRung2EnvKey: "STRIPE_PRICE_RUNG2",
     paymentLinkUrl: "",
     highlighted: true,
     features: [

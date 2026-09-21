@@ -6,20 +6,28 @@ import { formatCountdown, getOrSetOfferDeadline } from "@/lib/countdown";
 interface CountdownProps {
   className?: string;
   id?: string;
+  /** Called once when the countdown reaches zero. */
+  onExpire?: () => void;
 }
 
-export function Countdown({ className = "", id }: CountdownProps) {
+export function Countdown({ className = "", id, onExpire }: CountdownProps) {
   const [remainingMs, setRemainingMs] = useState<number | null>(null);
 
   useEffect(() => {
     const deadline = getOrSetOfferDeadline();
+    let fired = false;
     const tick = () => {
-      setRemainingMs(Math.max(0, deadline - Date.now()));
+      const remaining = Math.max(0, deadline - Date.now());
+      setRemainingMs(remaining);
+      if (remaining <= 0 && !fired) {
+        fired = true;
+        onExpire?.();
+      }
     };
     tick();
     const timerId = window.setInterval(tick, 1000);
     return () => window.clearInterval(timerId);
-  }, []);
+  }, [onExpire]);
 
   return (
     <time

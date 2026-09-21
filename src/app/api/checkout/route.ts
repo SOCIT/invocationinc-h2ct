@@ -5,6 +5,7 @@ import {
   getSiteUrl,
   getStripe,
   getStripePriceId,
+  getStripeRung2PriceId,
 } from "@/lib/stripe";
 import { isValidProductId } from "@/lib/products";
 
@@ -12,6 +13,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const productId = body?.productId;
+    const expired = body?.expired === true;
 
     if (!productId || typeof productId !== "string" || !isValidProductId(productId)) {
       return NextResponse.json(
@@ -21,7 +23,9 @@ export async function POST(request: NextRequest) {
     }
 
     const stripe = getStripe();
-    const priceId = getStripePriceId(productId);
+    const priceId = expired
+      ? getStripeRung2PriceId(productId)
+      : getStripePriceId(productId);
 
     if (!stripe || !priceId) {
       return NextResponse.json(
