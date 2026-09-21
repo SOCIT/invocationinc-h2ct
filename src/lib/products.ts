@@ -70,4 +70,8 @@ export function isValidProductId(id: string): id is ProductId {
   return id === "book";
 }
 
+export const OFFER_DEADLINE_KEY = "h2ct_offer_deadline";
+
+export const OFFER_WINDOW_MS = 24 * 60 * 60 * 1000;
+
 export const bookProduct = getProduct("book")!;

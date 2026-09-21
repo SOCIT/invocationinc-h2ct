@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BuyButton } from "./BuyButton";
+import { Countdown } from "./Countdown";
 import { bookProduct } from "@/lib/products";
 
 const WEEKS: Array<[string, string]> = [
@@ -17,12 +18,12 @@ const WEEKS: Array<[string, string]> = [
 
 const FAQS: Array<[string, string]> = [
   [
-    "I don't have time for an 8-week system.",
-    "Start from what the log proves. If Monday only gave you two clean hours, start with two. Do not highlight eight you have never kept. And the first week is just writing hours down \u2014 fifteen-minute blocks, one grid, one notebook.",
+    "LOL. I don't have time for an 8-week system.",
+    "THAT'S THE FUCKING POINT! In 8 weeks you'll have 75% more time.",
   ],
   [
     "I need motivation first.",
-    "The story that you need a deep desire before you can move is nonsense. Will is first, not passion. You do not need to love the goal. You are not in love with escaping a fire. You still leave. No speech about passion. No permission from the room.",
+    "You do not need to want to change in order to change, you do not need a desire to change in order to change. Will is first, not passion. You do not need to love the goal. You are not in love with escaping a fire. You still leave. No speech about passion. No permission from the room.",
   ],
   [
     "I don't know what I want.",
@@ -38,7 +39,7 @@ const FAQS: Array<[string, string]> = [
   ],
   [
     "AI is going to take my job anyway.",
-    "The point of a life is that the current setting ends. You move up. And \u201Ca machine can\u2019t do what I do\u201D is usually true about the last inch and a lie about the other eleven.",
+    "So delegate your job to it today so that you can do more important things.",
   ],
   [
     "No one can do it as well as I can.",
@@ -54,7 +55,8 @@ export function H2CTPage() {
   return (
     <>
       <div className="lf-bar">
-        HOW TO CREATE TIME — <span className="lf-now">THE $47 SYSTEM</span>
+        HOW TO CREATE TIME — <span className="lf-now">THE $47 SYSTEM</span> —
+        TIMER: <Countdown id="timerTop" className="lf-timer" />
       </div>
 
       <header className="lf-site-header">
@@ -84,17 +86,18 @@ export function H2CTPage() {
         </p>
 
         <p>
-          You are in a burning building on an island. The room still has a chair.
-          The beach still has shade. Across the water you can see the other shore.{" "}
-          <strong>Ninety-nine percent stay.</strong> They are comfortable. They are
-          afraid. Or they wait for a feeling they were told they had to have first.
+          You are on an island. The beach still has shade. Across the water you
+          can see the other shore. <strong>Ninety-nine percent stay.</strong>{" "}
+          They are comfortable. They are afraid. Or they wait for a feeling they
+          were told they had to have first.
         </p>
 
         <p>
+          You are in a burning building. The room still has a chair.{" "}
           <strong>Comfort is the number-one human instinct. Not survival.</strong>{" "}
           If survival were first, overdoses wouldn&apos;t happen, wrecks
           wouldn&apos;t happen, and we&apos;d still be in the cave. Familiar is
-          comfort. Comfort stays.
+          comfort. Comfort kills.
         </p>
 
         <p>
@@ -103,10 +106,14 @@ export function H2CTPage() {
           their hours on things that do not move the goal and do not keep livelihood
           alive. Attention is the toll. It does not refill at midnight. Where you
           paid with time and attention is what was important. If Other won, Other
-          was the religion.
+          was the religion. If things other than what&apos;s important to you took
+          up the most time, then the world won against you and comfort beat you.
         </p>
 
         <div className="lf-cta" id="buy-hero">
+          <p className="lf-timer-hero">
+            <Countdown id="timerHero" />
+          </p>
           <BuyButton
             productId="book"
             label={<>Get the System — {bookProduct.priceDisplay}</>}
@@ -145,10 +152,10 @@ export function H2CTPage() {
             write the hours down, nothing downstream works.
           </p>
           <p>
-            <strong>You are waiting to feel like it.</strong> The story that you need
-            a deep desire before you can move is nonsense. Will is first. You do not
-            need to love the goal. You are not in love with escaping a fire. You
-            still leave.
+            <strong>You are waiting to feel like it.</strong> You do not need to
+            want to change in order to change, you do not need a desire to change
+            in order to change. Will is first. You do not need to love the goal.
+            You are not in love with escaping a fire. You still leave.
           </p>
         </div>
 
@@ -171,21 +178,22 @@ export function H2CTPage() {
         ))}
 
         <p>
-          The named tools, so you know what you&apos;re getting: the rabbit. The
-          elephant bites. Time on Task. 45/15. The distraction log. One kill per day.
-          Avalanche and snowball. Stop, hand off, keep. The ceiling and the floor.
-          Fail on purpose. The squirrel bin. The fire test. The five words. SOP,
-          train, inspect. And the rolling fourteen-day calendar.
+          Forget the vocabulary. Do the weeks. Every tool in the book earns its
+          name after you&apos;ve used it once — that is what the workbook is for.
         </p>
 
         <h2>What the executive version costs</h2>
 
         <p>
+          This is a system. That is why we can charge $10,000 — or $2,500 an
+          hour — for the executive version, and why companies keep paying it.
+        </p>
+
+        <p>
           <em>&ldquo;I will save you the tens of thousands of dollars people pay
           for that executive version. This costs hundreds of times less than a
           single hour of the training it came from.&rdquo;</em> That is the
-          author&apos;s pitch, in his own words — and it is the only price anchor
-          on this page.
+          author&apos;s pitch, in his own words.
         </p>
 
         <p>
@@ -196,6 +204,14 @@ export function H2CTPage() {
           — time that used to be Other, excuses, and repeats. The clock does not
           change and the output does. Same twenty-four. Magnitudes more of
           Don&apos;t Have and Want.
+        </p>
+
+        <p>
+          And here is the part to sit with: seventy-five percent of everything
+          you do should not be done by you. Less than a quarter of what you do
+          is actually worthwhile to your goals. The freed hours go to making
+          more money, more time with family, or whatever it is you love — the
+          rest gets delegated, automated, or killed.
         </p>
 
         <h2>What you get: the system</h2>
@@ -261,7 +277,8 @@ export function H2CTPage() {
         <p>
           He&apos;s been GM, VP, interim CEO — managing coders and IT workers (not always
           the best communicators) and running performance reviews for a living. He has
-          studied hypnosis, NLP, sales, and performance.
+          studied hypnosis, NLP, sales, and performance. For a decade or so, he has
+          run a company that makes weapons components for the U.S. Navy.
         </p>
 
         <p>
@@ -274,9 +291,12 @@ export function H2CTPage() {
 
         <p>
           <strong>How to Create Time</strong> — the complete book, the Companion
-          workbook, and the Time Log, direct from the author. The coaching this came
-          from costs tens of thousands of dollars. The system is{" "}
-          <strong>{bookProduct.priceDisplay}</strong>.
+          workbook, and the Time Log, direct from the author. The system is{" "}
+          <strong>{bookProduct.priceDisplay}</strong> while the clock runs.
+        </p>
+
+        <p className="lf-timer-offer">
+          <Countdown id="timerOffer" />
         </p>
 
         <div className="lf-cta">
@@ -287,6 +307,16 @@ export function H2CTPage() {
           <p className="lf-tiny">
             PDFs available to download the second your payment clears. Sold here
             direct from the author.
+          </p>
+        </div>
+
+        <div className="lf-warn">
+          <h2>The price ladder</h2>
+          <p>
+            $47 exists while the bar counts. Every real review moves the public
+            price up $10 — $57, $67, $77, $87, $97. When the finished course
+            ships, its standard price is $4,997. In person, under NDA, it is
+            $10,000. This page&apos;s early price never comes back.
           </p>
         </div>
 
