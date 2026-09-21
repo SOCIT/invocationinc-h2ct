@@ -329,8 +329,9 @@ export function H2CTPage() {
             <p>
               He&apos;s been GM, VP, interim CEO — managing coders and IT workers (not always
               the best communicators) and running performance reviews for a living. He has
-              studied hypnosis, NLP, sales, and performance. For a decade or so, he has
-              run a company that makes weapons components for the U.S. Navy.
+              studied hypnosis, NLP, sales, and performance. He&apos;s been doing all of it for decades,
+              and he still does: private coaching, and a company that makes weapons components for
+              the U.S. Navy.
             </p>
 
             <p>
