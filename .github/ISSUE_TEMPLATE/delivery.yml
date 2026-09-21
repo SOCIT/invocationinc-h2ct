@@ -1,0 +1,38 @@
+name: Delivery — missing PDF
+description: Buyer paid but book / workbook / Time Log did not arrive
+title: "[delivery] Missing download after payment"
+labels: ["cs", "delivery"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check Stripe receipt email first. Escalate to Owner Desk only after portal + resend fail.
+  - type: input
+    id: email
+    attributes:
+      label: Buyer email (from Stripe)
+      placeholder: customer@example.com
+    validations:
+      required: true
+  - type: input
+    id: payment_ref
+    attributes:
+      label: Stripe payment / receipt id
+    validations:
+      required: true
+  - type: dropdown
+    id: which_file
+    attributes:
+      label: What's missing?
+      options:
+        - Book (h2ct.pdf)
+        - Companion workbook
+        - Time Log
+        - All of the above
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: What they already tried

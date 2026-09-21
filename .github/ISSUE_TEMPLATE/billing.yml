@@ -1,0 +1,43 @@
+name: Billing / refund / receipt
+description: Charge, refund, receipt, or portal access — portal first
+title: "[billing] Portal / refund / receipt"
+labels: ["cs", "billing"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Send them to the Stripe customer portal first. Escalate to Owner Desk only if portal cannot resolve.
+  - type: dropdown
+    id: portal_tried
+    attributes:
+      label: Did they try the customer portal?
+      options:
+        - Yes — still blocked
+        - No — need portal link
+        - Unsure
+    validations:
+      required: true
+  - type: input
+    id: email
+    attributes:
+      label: Buyer email
+    validations:
+      required: true
+  - type: dropdown
+    id: ask
+    attributes:
+      label: Ask
+      options:
+        - Refund
+        - Receipt / invoice
+        - Update card
+        - Duplicate charge
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+    validations:
+      required: true

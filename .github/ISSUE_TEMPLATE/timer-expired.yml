@@ -1,0 +1,25 @@
+name: Timer expired / price mismatch
+description: Offer timer hit zero or checkout price does not match the page
+title: "[timer] Price or countdown mismatch"
+labels: ["cs", "offer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Live offer is $97 struck / $47 while the clock runs. Do not invent SKUs or executive pricing.
+  - type: input
+    id: seen_price
+    attributes:
+      label: Price they saw
+    validations:
+      required: true
+  - type: input
+    id: checkout_price
+    attributes:
+      label: Price at checkout (if different)
+  - type: textarea
+    id: when
+    attributes:
+      label: When / timezone / screenshot notes
+    validations:
+      required: true
