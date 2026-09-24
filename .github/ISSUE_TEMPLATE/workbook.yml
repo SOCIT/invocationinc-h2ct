@@ -1,0 +1,28 @@
+name: Where is the workbook?
+description: Buyer cannot find Companion workbook or Time Log after purchase
+title: "[fulfillment] Workbook / Time Log locate"
+labels: ["delivery"]
+body:
+  - type: input
+    id: email
+    attributes:
+      label: Buyer email
+    validations:
+      required: true
+  - type: dropdown
+    id: looking_for
+    attributes:
+      label: Looking for
+      options:
+        - H2CT Companion workbook
+        - H2CT Time Log
+        - Both
+        - Book PDF
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Where they looked (email, success page, downloads)
+    validations:
+      required: true
