@@ -545,7 +545,7 @@ export default function WorkbookApp() {
           </button>
           <p style={{ marginTop: 12 }}>
             <button type="button" className="lf-btn lf-btn-ghost" onClick={exportJson}>
-              Download my answers (file)
+              Download my answers (JSON)
             </button>
           </p>
           <p style={{ marginTop: 12 }}>

@@ -18,7 +18,7 @@ export function Header() {
         />
       </a>
       <Link href="/#offer">
-        Get the {bookProduct.shortName} — {bookProduct.priceDisplay}
+        Get the System — {bookProduct.priceDisplay}
       </Link>
     </header>
   );

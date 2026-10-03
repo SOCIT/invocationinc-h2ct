@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="lf-footer">
       <p>
-        © {year} Invocation Inc. Not medical advice.
+        © {year} Invocation Inc. Not therapy. Not medical advice.
       </p>
       <p className="lf-imprint-line">
         <img
