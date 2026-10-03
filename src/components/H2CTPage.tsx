@@ -1,10 +1,6 @@
-"use client";
-
-import { useCallback, useState } from "react";
 import Link from "next/link";
+import { bookProduct } from "@/lib/products";
 import { BuyButton } from "./BuyButton";
-import { Countdown } from "./Countdown";
-import { H2CTPrice } from "./H2CTPrice";
 
 const WEEKS: Array<[string, string]> = [
   ["Week 0 — Point B", "The Have/Want quadrant. Bottom left — Don\u2019t Have and Want — is your destination. Clear the old pile first: avalanche or snowball, pick one, don\u2019t switch."],
@@ -52,31 +48,13 @@ const FAQS: Array<[string, string]> = [
     "What exactly do I get?",
     "The complete book as a PDF, the H2CT Companion workbook as a PDF, and the Time Log \u2014 all downloadable the second your payment clears. Check your email for the Stripe receipt.",
   ],
-  [
-    "Why $47 if it is \u201Creally\u201D $97?",
-    "Our coaching clients are under NDA, so this page launches with zero testimonials. No borrowed wins, no fake five-stars. The first public scoreboards come from buyers here, and the price climbs with each one. $47 is the before-proof price.",
-  ],
-  [
-    "Why a timer?",
-    "The executive version goes for $10,000 in person. Every real review moves the public price toward that. Any day, this 24h window, we can raise it \u2014 and when your clock hits zero, it does.",
-  ],
 ];
 
 export function H2CTPage() {
-  const [expired, setExpired] = useState(false);
-  const handleExpire = useCallback(() => setExpired(true), []);
-
   return (
     <>
       <div className="lf-bar">
-        HOW TO CREATE TIME — <H2CTPrice expired={expired} /> —{" "}
-        {expired ? (
-          "WINDOW CLOSED"
-        ) : (
-          <>
-            TIMER: <Countdown id="timerTop" className="lf-timer" onExpire={handleExpire} />
-          </>
-        )}
+        HOW TO CREATE TIME — {bookProduct.priceDisplay}
       </div>
 
       <header className="lf-site-header">
@@ -94,7 +72,7 @@ export function H2CTPage() {
           />
         </a>
         <Link href="#offer">
-          Get the System — <H2CTPrice expired={expired} />
+          Get the System — {bookProduct.priceDisplay}
         </Link>
       </header>
 
@@ -143,29 +121,6 @@ export function H2CTPage() {
           was the religion. If things other than what&apos;s important to you took
           up the most time, then the world won against you and comfort beat you.
         </p>
-
-        <div className="lf-cta" id="buy-hero">
-          {expired ? (
-            <p className="lf-timer-hero">Window closed.</p>
-          ) : (
-            <p className="lf-timer-hero">
-              <Countdown id="timerHero" onExpire={handleExpire} />
-            </p>
-          )}
-          <BuyButton
-            productId="book"
-            expired={expired}
-            label={
-              <>
-                Get the System — <H2CTPrice expired={expired} />
-              </>
-            }
-          />
-          <p className="lf-tiny">
-            Book + Companion workbook + Time Log. PDFs download the second your
-            payment clears.
-          </p>
-        </div>
 
         <h2>The gate: read this before anything else</h2>
 
@@ -261,7 +216,7 @@ export function H2CTPage() {
 
         <p>
           This is not a book with a workbook. It is a system with a book in it —
-          and that is the $47 justification.
+          and that is the $9.99 justification.
         </p>
 
         <ul>
@@ -347,57 +302,57 @@ export function H2CTPage() {
         <p>
           <strong>How to Create Time</strong> — the complete book, the Companion
           workbook, and the Time Log, direct from the author. The system is{" "}
-          <H2CTPrice expired={expired} />{" "}
-          {expired
-            ? "now that your window closed."
-            : "while the clock runs."}
+          {bookProduct.priceDisplay}.
         </p>
 
-        <p>
-          Why the discount? Our coaching clients are under NDA — so no borrowed
-          wins, no fake five-stars. This page launches with zero testimonials,
-          and the first public scoreboards come from buyers here. $47 is the
-          before-proof price.
-        </p>
+        <section className="lf-formats" aria-label="Formats">
+          <h2>Formats</h2>
 
-        {expired ? (
-          <>
-            <p className="lf-timer-offer">Window closed.</p>
+          <div className="lf-format">
+            <h3>Read</h3>
+            <p>The ebook. PDF and EPUB.</p>
+            {/*
+              RETAILER PLACEHOLDER — no listing URL in this repo.
+              Do not invent Amazon, KDP, Apple Books, Barnes & Noble,
+              or any other store link. No href until a real URL is added.
+              One purchase button only: the system button under this block.
+            */}
+          </div>
+
+          <div className="lf-format">
+            <h3>Listen</h3>
+            <p>Audiobook. In production.</p>
+            {/*
+              AUDIO PLACEHOLDER — no audiobook URL in the repo or site config.
+              Do not invent an Audible or other store link.
+            */}
+          </div>
+
+          <div className="lf-format">
+            <h3>Do</h3>
             <p>
-              Your $47 window closed when the clock hit zero. The system is now
-              $57 — still hundreds of times less than a single hour of the
-              executive training it came from.
+              The Companion workbook and the Time Log. They ship with the book.
             </p>
-          </>
-        ) : (
-          <p className="lf-timer-offer">
-            <Countdown id="timerOffer" onExpire={handleExpire} />
-          </p>
-        )}
+          </div>
+
+          <div className="lf-format">
+            <h3>Watch</h3>
+            <p>Video. In production.</p>
+            {/*
+              VIDEO PLACEHOLDER — no video URL in the repo or site config.
+              Do not invent a YouTube or other video link.
+            */}
+          </div>
+        </section>
 
         <div className="lf-cta">
           <BuyButton
             productId="book"
-            expired={expired}
-            label={
-              <>
-                Get the System — <H2CTPrice expired={expired} />
-              </>
-            }
+            label={<>Get the System — {bookProduct.priceDisplay}</>}
           />
           <p className="lf-tiny">
             PDFs available to download the second your payment clears. Sold here
             direct from the author.
-          </p>
-        </div>
-
-        <div className="lf-warn">
-          <h2>The price ladder</h2>
-          <p>
-            $47 exists while the bar counts. Miss it and the price climbs with
-            the proof — $57, $67, $77, $87, $97. When the finished course ships,
-            its standard price is $4,997. In person, under NDA, it is $10,000.
-            This page&apos;s early price never comes back.
           </p>
         </div>
 

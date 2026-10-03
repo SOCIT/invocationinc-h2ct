@@ -12,9 +12,7 @@ export function getStripe(): Stripe | null {
 export function isCheckoutConfigured(productId?: ProductId): boolean {
   if (!process.env.STRIPE_SECRET_KEY) return false;
   if (!productId) {
-    return Boolean(
-      process.env.STRIPE_PRICE_BOOK || process.env.STRIPE_PRICE_STACK
-    );
+    return Boolean(process.env.STRIPE_PRICE_BOOK);
   }
   return Boolean(getStripePriceId(productId));
 }
@@ -24,14 +22,6 @@ export function getStripePriceId(productId: ProductId): string | null {
   if (!product) return null;
   const priceId = process.env[product.stripePriceEnvKey];
   return priceId || null;
-}
-
-/** Price ID for the expired-window rung (next $10 step up the ladder). */
-export function getStripeRung2PriceId(productId: ProductId): string | null {
-  const product = getProduct(productId);
-  if (!product) return null;
-  const priceId = process.env[product.stripePriceRung2EnvKey];
-  return priceId || getStripePriceId(productId);
 }
 
 export function getSiteUrl(): string {

@@ -1,6 +1,9 @@
 /**
- * H2CT offer — the system: book + workbook, direct from the author.
- * PDF downloads. Do not hardcode Stripe Price IDs; wire them via env.
+ * H2CT offer — the system: book + workbook + Time Log, direct from the author.
+ * One price: $9.99. Do not hardcode Stripe Price IDs; wire them via env.
+ *
+ * Checkout uses STRIPE_PRICE_BOOK. Live value:
+ * price_1UMYUhPj4KYXkIe0TGmkKkU7 ($9.99, 999 cents, one-time).
  */
 
 export type ProductId = "book";
@@ -10,19 +13,11 @@ export interface Product {
   name: string;
   shortName: string;
   description: string;
-  /** Charge price shown on buttons. */
+  /** Charge price shown on the button. One number. No strike. */
   priceDisplay: string;
   priceCents: number;
-  /** List / strike price when different from charge price. */
-  listPriceDisplay?: string;
-  listPriceCents?: number;
-  /** Price shown/charged after the visitor's 24h window expires. */
-  rung2PriceDisplay: string;
-  rung2PriceCents: number;
   /** Env var name holding the Stripe Price ID for this offer. */
   stripePriceEnvKey: "STRIPE_PRICE_BOOK";
-  /** Env var name holding the Stripe Price ID for the expired-window rung. */
-  stripePriceRung2EnvKey: "STRIPE_PRICE_RUNG2";
   /**
    * Optional Stripe Payment Link. Leave empty to use /api/checkout.
    * Prefer API checkout + env Price IDs.
@@ -54,16 +49,9 @@ export const products: Product[] = [
     shortName: "The System",
     description:
       "The complete book plus the H2CT Companion workbook and the Time Log. Instant PDF downloads.",
-    priceDisplay: "$47",
-    priceCents: 4700,
-    listPriceDisplay: "$97",
-    listPriceCents: 9700,
-    /** Price shown/charged after the visitor's 24h window expires. */
-    rung2PriceDisplay: "$57",
-    rung2PriceCents: 5700,
+    priceDisplay: "$9.99",
+    priceCents: 999,
     stripePriceEnvKey: "STRIPE_PRICE_BOOK",
-    /** Env var name holding the Stripe Price ID for the expired-window rung. */
-    stripePriceRung2EnvKey: "STRIPE_PRICE_RUNG2",
     paymentLinkUrl: "",
     highlighted: true,
     features: [
@@ -81,9 +69,5 @@ export function getProduct(id: ProductId): Product | undefined {
 export function isValidProductId(id: string): id is ProductId {
   return id === "book";
 }
-
-export const OFFER_DEADLINE_KEY = "h2ct_offer_deadline";
-
-export const OFFER_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 export const bookProduct = getProduct("book")!;

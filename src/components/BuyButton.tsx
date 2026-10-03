@@ -9,8 +9,6 @@ interface BuyButtonProps {
   variant?: "primary" | "ghost";
   className?: string;
   id?: string;
-  /** True when the visitor's 24h $47 window has expired — checkout uses the next rung. */
-  expired?: boolean;
 }
 
 function defaultLabel(productId: ProductId): ReactNode {
@@ -24,7 +22,6 @@ export function BuyButton({
   variant = "primary",
   className = "",
   id,
-  expired = false,
 }: BuyButtonProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -45,7 +42,7 @@ export function BuyButton({
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId, expired }),
+        body: JSON.stringify({ productId }),
       });
 
       const data = await res.json();
