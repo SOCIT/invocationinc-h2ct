@@ -8,7 +8,6 @@
   --red2: #9a0b1e;
   --line: #d7cbb8;
   --white: #fffaf2;
-  --strike: #8a7a6a;
   --navy: #140e0c;
   --brand-red: #d10f28;
 }
@@ -23,7 +22,6 @@
   --color-brand-red: var(--brand-red);
   --color-line: var(--line);
   --color-cream: var(--white);
-  --color-strike: var(--strike);
 }
 
 * {
@@ -61,11 +59,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-}
-
-.lf-bar time,
-.lf-bar .lf-timer {
-  color: #ffe08a;
 }
 
 .lf-site-header {
@@ -226,89 +219,27 @@ body {
   color: var(--red);
 }
 
-.lf-price-row {
+.lf-formats {
+  margin: 8px 0 0;
+}
+
+.lf-format {
+  border-top: 1px solid var(--line);
+  padding: 14px 0 2px;
+}
+
+.lf-format h3 {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 8px 0 14px;
-}
-
-.lf-was {
-  text-decoration: line-through;
-  text-decoration-thickness: 2px;
-  text-decoration-skip-ink: none;
-  color: #c8b8a4;
-  font-size: 28px;
-  margin-right: 10px;
-}
-
-.lf-now {
-  color: #ff3b54;
-  font-size: 48px;
-  font-weight: 900;
-}
-
-.lf-stack-price {
-  white-space: nowrap;
-}
-
-.lf-stack-price-compact .lf-was,
-.lf-cta-kicker .lf-was,
-.lf-bar .lf-was,
-.lf-site-header .lf-was,
-.lf-sticky .t .lf-was,
-.lf-btn .lf-was {
-  font-size: inherit;
-  font-weight: 700;
-  margin-right: 0.35em;
-}
-
-.lf-stack-price-compact .lf-now,
-.lf-cta-kicker .lf-now,
-.lf-bar .lf-now,
-.lf-site-header .lf-now,
-.lf-sticky .t .lf-now,
-.lf-btn .lf-now {
-  font-size: inherit;
-}
-
-/* Cream / paper surfaces: muted strike, fat red now-price */
-.lf-site-header .lf-was {
-  color: var(--strike);
-  text-decoration-color: var(--strike);
-}
-
-.lf-site-header .lf-now {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--red);
+  margin: 0 0 8px;
 }
 
-/* Black bars: muted cream strike so $97 stays visible */
-.lf-bar .lf-was,
-.lf-sticky .t .lf-was {
-  color: rgb(255 250 242 / 0.7);
-  text-decoration-color: rgb(255 250 242 / 0.85);
-}
-
-.lf-bar .lf-now,
-.lf-sticky .t .lf-now {
-  color: #ff3b54;
-}
-
-/* Red CTAs: muted white strike — brown strike vanishes on #d10f28 */
-.lf-btn-red .lf-was {
-  color: rgb(255 255 255 / 0.78);
-  text-decoration-color: rgb(255 255 255 / 0.92);
-  text-decoration-thickness: 2.5px;
-}
-
-.lf-btn-red .lf-now {
-  color: #fff;
-}
-
-.lf-cta-kicker .lf-was {
-  color: #c8b8a4;
-}
-
-.lf-cta-kicker .lf-now {
-  color: #ff3b54;
+.lf-formats .lf-tiny {
+  color: var(--soft);
 }
 
 .lf-badge {
@@ -416,33 +347,6 @@ body {
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-.lf-timer-hero {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 34px;
-  font-weight: 900;
-  margin: 6px 0 12px;
-}
-
-.lf-timer-story {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 28px;
-  font-weight: 900;
-  margin: 0 0 12px;
-}
-
-.lf-timer-offer {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.lf-timer-final {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
-  font-size: 28px;
-  margin: 0 0 8px;
 }
 
 .lf-buy {

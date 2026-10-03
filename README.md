@@ -1,39 +1,28 @@
-# Invocation Inc — Eight Weeks to Happy (EW2H)
+# Invocation Inc — How to Create Time (H2CT)
 
-Lean Next.js sales page for **Eight Weeks to Happy** from **Invocation Inc** (Human Performance Engineers).
+Lean Next.js sales page for **How to Create Time** from **Invocation Inc** (Human Performance Engineers).
 
-The public landing is a port of the approved Chat longform v2. **Do not invent or rewrite marketing prose.** Source of truth:
+The live page is `src/components/H2CTPage.tsx`. Gates, disclaimers, the chapter list, FAQ substance, and the author bio stay as written.
 
-`docs/APPROVED-LONGFORM-V2.html`
-
-Method tokens: SmileBell™ / CalmBell™, Mood Log 6×/day, present-tense Change Statements, DoTo. Not therapy.
+`docs/APPROVED-LONGFORM-V2.html` is an older Eight Weeks to Happy longform. It is not served, and it was not edited here.
 
 ## Offers
 
-| Offer | Charge | List | Includes | Stripe env |
-|---|---|---|---|---|
-| **stack** (STACK) | **$47** (4700¢) | $97 | Book + Workbook + Companion App | `STRIPE_PRICE_STACK` |
-| **book** (WHY) | **$9.99** (999¢) | — | Book only | `STRIPE_PRICE_BOOK` |
+| Offer | Charge | Includes | Stripe env |
+|---|---|---|---|
+| **book** (system) | **$9.99** (999¢) | Book + workbook + Time Log | `STRIPE_PRICE_BOOK` |
 
-No workbook-only SKU. No combo SKU. Checkout product ids: `book` \| `stack` only.
+No second SKU. No workbook-only button. No strike price. No countdown. Checkout product id: `book` only.
 
-Companion app (only public app URL): https://invocationinc-ew2h-app.vercel.app
+`STRIPE_PRICE_BOOK` must be the active one-time price at **999** cents. The previous price on this product was **4700** cents and is inactive. Checkout does not read `STRIPE_PRICE_RUNG2`.
 
-Buy buttons always render. If Stripe env is missing, `/api/checkout` returns `503` with `checkout_not_configured`.
-
-STACK CTAs are primary red (`#d10f28`). Book CTAs are ghost. Sticky bar: `$97 → $47` + timer + red Take the Stack.
+The buy button always renders. If Stripe env is missing, `/api/checkout` returns `503` with `checkout_not_configured`.
 
 ### Stripe setup
 
-1. In [Stripe Dashboard → Products](https://dashboard.stripe.com/products), create one-time prices at **999** and **4700** cents.
-2. Set Vercel / `.env.local`: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_BOOK`, `STRIPE_PRICE_STACK`, `NEXT_PUBLIC_SITE_URL`.
+1. In [Stripe Dashboard → Products](https://dashboard.stripe.com/products), use the active one-time price at **999** cents on How to Create Time.
+2. Set Vercel / `.env.local`: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_BOOK`, `NEXT_PUBLIC_SITE_URL`.
 3. Do not invent or commit Stripe Price IDs in source.
-
-## 24h STACK timer
-
-- localStorage key: `ew2h_stack_deadline`
-- Set once on first visit (`now + 24h`). Refresh does not reset.
-- Shown in: top bar, hero, story CTA, offer box, final CTA, sticky bar.
 
 ## Newsletter MVP
 
@@ -62,8 +51,7 @@ Open [http://localhost:3000](http://localhost:3000).
 |---|---|
 | `STRIPE_SECRET_KEY` | Stripe secret key |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Publishable key (reserved) |
-| `STRIPE_PRICE_BOOK` | Price ID for book ($9.99 / 999) |
-| `STRIPE_PRICE_STACK` | Price ID for STACK ($47 / 4700) |
+| `STRIPE_PRICE_BOOK` | Price ID for the system ($9.99 / 999). Must be active. |
 | `NEXT_PUBLIC_SITE_URL` | Public origin, no trailing slash |
 | `NEWSLETTER_WEBHOOK_URL` | Optional webhook for email signups |
 
@@ -96,14 +84,13 @@ docs/APPROVED-LONGFORM-V2.html   # Approved sales copy (do not invent)
 src/
   app/
     page.tsx                     # Longform landing (port of approved HTML)
-    api/checkout/route.ts        # Stripe Checkout Session (book | stack)
+    api/checkout/route.ts        # Stripe Checkout Session (book)
     api/subscribe/route.ts       # Newsletter MVP
     success/ cancel/ privacy/ terms/
-  components/                    # LongformLanding, Countdown, BuyButton, StickyBar
+  components/                    # H2CTPage, BuyButton
   lib/
-    products.ts                  # Offers book | stack + brand + APP_URL
+    products.ts                  # Offers book | ebook + brand
     stripe.ts
-    countdown.ts                 # ew2h_stack_deadline helper
 ```
 
 ## License

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${brand.bookTitle} — ${brand.name}`,
     description:
-      "How to Create Time — Same 24 Hours. Different Output. The $47 system: book + workbook + Time Log, direct from the author.",
+      "How to Create Time — Same 24 Hours. Different Output. The $9.99 system: book + workbook + Time Log, direct from the author.",
     siteName: brand.name,
     type: "website",
   },
