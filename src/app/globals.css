@@ -8,6 +8,7 @@
   --red2: #9a0b1e;
   --line: #d7cbb8;
   --white: #fffaf2;
+  --strike: #8a7a6a;
   --navy: #140e0c;
   --brand-red: #d10f28;
 }
@@ -22,6 +23,7 @@
   --color-brand-red: var(--brand-red);
   --color-line: var(--line);
   --color-cream: var(--white);
+  --color-strike: var(--strike);
 }
 
 * {
@@ -59,6 +61,11 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
+}
+
+.lf-bar time,
+.lf-bar .lf-timer {
+  color: #ffe08a;
 }
 
 .lf-site-header {
@@ -219,27 +226,89 @@ body {
   color: var(--red);
 }
 
-.lf-formats {
-  margin: 8px 0 0;
-}
-
-.lf-format {
-  border-top: 1px solid var(--line);
-  padding: 14px 0 2px;
-}
-
-.lf-format h3 {
+.lf-price-row {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin: 0 0 8px;
+  margin: 8px 0 14px;
 }
 
-.lf-formats .lf-tiny {
-  color: var(--soft);
+.lf-was {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  color: #c8b8a4;
+  font-size: 28px;
+  margin-right: 10px;
+}
+
+.lf-now {
+  color: #ff3b54;
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.lf-stack-price {
+  white-space: nowrap;
+}
+
+.lf-stack-price-compact .lf-was,
+.lf-cta-kicker .lf-was,
+.lf-bar .lf-was,
+.lf-site-header .lf-was,
+.lf-sticky .t .lf-was,
+.lf-btn .lf-was {
+  font-size: inherit;
+  font-weight: 700;
+  margin-right: 0.35em;
+}
+
+.lf-stack-price-compact .lf-now,
+.lf-cta-kicker .lf-now,
+.lf-bar .lf-now,
+.lf-site-header .lf-now,
+.lf-sticky .t .lf-now,
+.lf-btn .lf-now {
+  font-size: inherit;
+}
+
+/* Cream / paper surfaces: muted strike, fat red now-price */
+.lf-site-header .lf-was {
+  color: var(--strike);
+  text-decoration-color: var(--strike);
+}
+
+.lf-site-header .lf-now {
+  color: var(--red);
+}
+
+/* Black bars: muted cream strike so $97 stays visible */
+.lf-bar .lf-was,
+.lf-sticky .t .lf-was {
+  color: rgb(255 250 242 / 0.7);
+  text-decoration-color: rgb(255 250 242 / 0.85);
+}
+
+.lf-bar .lf-now,
+.lf-sticky .t .lf-now {
+  color: #ff3b54;
+}
+
+/* Red CTAs: muted white strike — brown strike vanishes on #d10f28 */
+.lf-btn-red .lf-was {
+  color: rgb(255 255 255 / 0.78);
+  text-decoration-color: rgb(255 255 255 / 0.92);
+  text-decoration-thickness: 2.5px;
+}
+
+.lf-btn-red .lf-now {
+  color: #fff;
+}
+
+.lf-cta-kicker .lf-was {
+  color: #c8b8a4;
+}
+
+.lf-cta-kicker .lf-now {
+  color: #ff3b54;
 }
 
 .lf-badge {
@@ -349,6 +418,33 @@ body {
   text-transform: uppercase;
 }
 
+.lf-timer-hero {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  margin: 6px 0 12px;
+}
+
+.lf-timer-story {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0 0 12px;
+}
+
+.lf-timer-offer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.lf-timer-final {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
 .lf-buy {
   width: 100%;
 }
@@ -415,5 +511,292 @@ body {
   .lf-author-photo {
     width: 140px;
     height: 140px;
+  }
+}
+
+/* ---- Workbook app (/workbook-app) ---- */
+.wb-print {
+  display: none;
+}
+
+.wb-section h2 {
+  margin-top: 8px;
+}
+
+.wb-status {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--red);
+  padding: 12px 16px;
+  margin: 16px 0;
+}
+
+.wb-list {
+  margin: 0 0 26px;
+}
+
+.wb-list h3,
+.wb-section h3 {
+  margin-bottom: 6px;
+}
+
+.wb-note {
+  color: var(--soft);
+  font-size: 17px;
+  margin: 0 0 12px;
+}
+
+.wb-bullets {
+  font-size: 17px;
+  color: var(--soft);
+}
+
+.wb-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+.wb-num {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--soft);
+  min-width: 26px;
+  text-align: right;
+}
+
+.wb-input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 17px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--soft);
+  padding: 8px 10px;
+}
+
+.wb-input:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 0;
+  border-color: var(--red);
+}
+
+.wb-input-block {
+  width: 100%;
+  margin: 0 0 14px;
+}
+
+.wb-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 17px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--soft);
+  padding: 8px 10px;
+  margin: 0 0 10px;
+  resize: vertical;
+}
+
+.wb-textarea:focus {
+  outline: 2px solid var(--red);
+  border-color: var(--red);
+}
+
+.wb-field-label {
+  display: block;
+  font-weight: 700;
+  margin: 16px 0 6px;
+}
+
+.wb-circle {
+  appearance: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--soft);
+  padding: 4px;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.wb-circle-on {
+  color: var(--red);
+}
+
+.wb-check {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  accent-color: var(--red);
+  cursor: pointer;
+}
+
+.wb-add {
+  appearance: none;
+  background: transparent;
+  border: 1px dashed var(--soft);
+  color: var(--soft);
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  margin: 2px 0 6px;
+}
+
+.wb-add:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.wb-namedate {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.wb-namedate label {
+  flex: 1;
+  min-width: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soft);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wb-timerow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 8px;
+  flex-wrap: wrap;
+}
+
+.wb-timerow .wb-date {
+  flex: 0 1 150px;
+}
+
+.wb-timerow .wb-task {
+  flex: 1 1 160px;
+}
+
+.wb-timerow .wb-mins {
+  flex: 0 1 74px;
+}
+
+.wb-select {
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--soft);
+  padding: 8px 6px;
+  flex: 0 1 132px;
+  min-width: 0;
+}
+
+.wb-select:focus {
+  outline: 2px solid var(--red);
+  border-color: var(--red);
+}
+
+.wb-remove {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--soft);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  width: 38px;
+  height: 38px;
+  flex: none;
+}
+
+.wb-remove:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.wb-total {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 14px;
+}
+
+.wb-actions .lf-btn {
+  font-size: 16px;
+}
+
+/* ---- Workbook print view ---- */
+@media print {
+  body {
+    background: #fff;
+    font-size: 13pt;
+  }
+  .lf-site-header,
+  .lf-footer,
+  .wb-screen {
+    display: none !important;
+  }
+  .lf-wrap {
+    max-width: none;
+    padding: 0;
+  }
+  .wb-print {
+    display: block !important;
+    color: #000;
+  }
+  .wb-print h1 {
+    font-size: 22pt;
+    margin: 0 0 8pt;
+  }
+  .wb-print h2 {
+    font-size: 16pt;
+    margin: 20pt 0 6pt;
+    border-bottom: 1.5pt solid #000;
+    padding-bottom: 3pt;
+  }
+  .wb-print h3 {
+    font-size: 13pt;
+    margin: 12pt 0 4pt;
+  }
+  .wb-print p,
+  .wb-print li {
+    font-size: 12pt;
+  }
+  .wb-print table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .wb-print th,
+  .wb-print td {
+    border: 0.75pt solid #000;
+    padding: 4pt 6pt;
+    text-align: left;
+    font-size: 11pt;
   }
 }

@@ -50,15 +50,22 @@ export default async function SuccessPage({
             </a>
           </p>
           {hasWorkbook && (
-            <p style={{ marginTop: 12 }}>
-              <a
-                className="lf-btn lf-btn-ghost"
-                href="/downloads/h2ct-workbook.pdf"
-                download="H2CT-Companion-Workbook.pdf"
-              >
-                Download the workbook (PDF)
-              </a>
-            </p>
+            <>
+              <p style={{ marginTop: 12 }}>
+                <a
+                  className="lf-btn lf-btn-ghost"
+                  href="/downloads/h2ct-workbook.pdf"
+                  download="H2CT-Companion-Workbook.pdf"
+                >
+                  Download the workbook (PDF)
+                </a>
+              </p>
+              <p style={{ marginTop: 12 }}>
+                <Link className="lf-btn lf-btn-ghost" href="/workbook-app">
+                  Use the interactive workbook
+                </Link>
+              </p>
+            </>
           )}
           <p className="lf-tiny">
             {bookProduct.description}
