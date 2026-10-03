@@ -2,8 +2,8 @@
  * H2CT offer — the system: book + workbook + Time Log, direct from the author.
  * One price: $9.99. Do not hardcode Stripe Price IDs; wire them via env.
  *
- * Checkout uses STRIPE_PRICE_BOOK. That env var must be the active
- * one-time price at 999 cents, not the inactive 4700-cent price.
+ * Checkout uses STRIPE_PRICE_BOOK. Live value:
+ * price_1UMYUhPj4KYXkIe0TGmkKkU7 ($9.99, 999 cents, one-time).
  */
 
 export type ProductId = "book";

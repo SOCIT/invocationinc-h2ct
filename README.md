@@ -14,7 +14,7 @@ The live page is `src/components/H2CTPage.tsx`. Gates, disclaimers, the chapter 
 
 No second SKU. No workbook-only button. No strike price. No countdown. Checkout product id: `book` only.
 
-`STRIPE_PRICE_BOOK` must be the active one-time price at **999** cents. The previous price on this product was **4700** cents and is inactive. Checkout does not read `STRIPE_PRICE_RUNG2`.
+`STRIPE_PRICE_BOOK` is the live one-time price `price_1UMYUhPj4KYXkIe0TGmkKkU7` (**999** cents, $9.99). Checkout does not read `STRIPE_PRICE_RUNG2`.
 
 The buy button always renders. If Stripe env is missing, `/api/checkout` returns `503` with `checkout_not_configured`.
 
@@ -51,7 +51,7 @@ Open [http://localhost:3000](http://localhost:3000).
 |---|---|
 | `STRIPE_SECRET_KEY` | Stripe secret key |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Publishable key (reserved) |
-| `STRIPE_PRICE_BOOK` | Price ID for the system ($9.99 / 999). Must be active. |
+| `STRIPE_PRICE_BOOK` | `price_1UMYUhPj4KYXkIe0TGmkKkU7` — system, $9.99 / 999 cents |
 | `NEXT_PUBLIC_SITE_URL` | Public origin, no trailing slash |
 | `NEWSLETTER_WEBHOOK_URL` | Optional webhook for email signups |
 
