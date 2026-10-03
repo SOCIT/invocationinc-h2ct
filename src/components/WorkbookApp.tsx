@@ -6,6 +6,16 @@ const STORAGE_KEY = "h2ct-workbook-v1";
 
 type Task = { text: string; done: boolean };
 type TimeRow = { date: string; task: string; category: string; minutes: string };
+/** One paper Time on Task day sheet. blocks keyed by block index "0".."63";
+ *  mark is "P" (productive — the block did what you marked it for) or
+ *  "W" (wasted — it did not), per the book's Week 1 definition. */
+type TotDay = {
+  date: string;
+  day: string;
+  cycle: string;
+  blocks: Record<string, { code: string; mark: string }>;
+  margin: string;
+};
 type Ikigai = { love: string[]; goodAt: string[]; worldNeeds: string[]; paidFor: string[] };
 
 type State = {
@@ -29,9 +39,20 @@ type State = {
   milestones: string[];
   tasks: Task[];
   timeLog: TimeRow[];
+  totDays: TotDay[];
 };
 
 const rows = (n: number): string[] => Array.from({ length: n }, () => "");
+
+const blankTotDay = (): TotDay => ({ date: "", day: "", cycle: "", blocks: {}, margin: "" });
+
+/** The paper grid: sixteen waking hours in fifteen-minute blocks. */
+const BLOCK_TIMES: string[] = Array.from({ length: 64 }, (_, i) => {
+  const mins = i * 15;
+  return `+${String(Math.floor(mins / 60)).padStart(2, "0")}:${String(mins % 60).padStart(2, "0")}`;
+});
+
+const LEAK_CODES = ["D", "SO", "O", "X"];
 
 const initialState: State = {
   hwName: "",
@@ -54,6 +75,7 @@ const initialState: State = {
   milestones: rows(5),
   tasks: Array.from({ length: 10 }, () => ({ text: "", done: false })),
   timeLog: [{ date: "", task: "", category: "G", minutes: "" }],
+  totDays: [blankTotDay()],
 };
 
 const CATEGORIES: { code: string; label: string }[] = [
@@ -67,6 +89,8 @@ const CATEGORIES: { code: string; label: string }[] = [
   { code: "D", label: "D — Distract" },
   { code: "O", label: "O — Obstacle" },
   { code: "X", label: "X — Excuse" },
+  // The book's code list adds Ot (Other); the paper legend leaves it off.
+  { code: "Ot", label: "Ot — Other" },
 ];
 
 function mergeState(saved: Partial<State> | null): State {
@@ -75,12 +99,20 @@ function mergeState(saved: Partial<State> | null): State {
     ...initialState,
     ...saved,
     ikigai: { ...initialState.ikigai, ...(saved.ikigai ?? {}) },
+    // Saved state from before the day grid existed has no totDays (or a
+    // partial shape) — keep whatever days are there, drop malformed ones.
+    totDays:
+      Array.isArray(saved.totDays) && saved.totDays.length > 0
+        ? saved.totDays.map((d) => ({ ...blankTotDay(), ...(d ?? {}), blocks: d?.blocks ?? {} }))
+        : initialState.totDays,
   };
 }
 
 export default function WorkbookApp() {
   const [state, setState] = useState<State>(initialState);
   const [loaded, setLoaded] = useState(false);
+  const [totDayIdx, setTotDayIdx] = useState(0);
+  const [totCat, setTotCat] = useState("G");
 
   useEffect(() => {
     try {
@@ -103,6 +135,46 @@ export default function WorkbookApp() {
 
   const set = <K extends keyof State>(key: K, value: State[K]) =>
     setState((s) => ({ ...s, [key]: value }));
+
+  const setTotDay = (idx: number, patch: Partial<TotDay>) =>
+    setState((s) => {
+      const totDays = [...s.totDays];
+      totDays[idx] = { ...totDays[idx], ...patch };
+      return { ...s, totDays };
+    });
+
+  /** Paper mechanic: one mark per block. Tap cycles unmarked -> P -> W ->
+   *  unmarked, stamping the block with the currently picked category. */
+  const cycleBlock = (dayIdx: number, blockIdx: number) =>
+    setState((s) => {
+      const totDays = [...s.totDays];
+      const day = { ...totDays[dayIdx], blocks: { ...totDays[dayIdx].blocks } };
+      const key = String(blockIdx);
+      const cur = day.blocks[key];
+      if (!cur || !cur.mark) day.blocks[key] = { code: totCat, mark: "P" };
+      else if (cur.mark === "P") day.blocks[key] = { code: cur.code, mark: "W" };
+      else delete day.blocks[key];
+      totDays[dayIdx] = day;
+      return { ...s, totDays };
+    });
+
+  const totStats = useMemo(() => {
+    let p = 0,
+      w = 0,
+      g = 0,
+      leaks = 0;
+    for (const d of state.totDays) {
+      for (const key of Object.keys(d.blocks)) {
+        const b = d.blocks[key];
+        if (!b || !b.mark) continue;
+        if (b.mark === "P") p++;
+        else if (b.mark === "W") w++;
+        if (b.code === "G") g++;
+        if (LEAK_CODES.includes(b.code)) leaks++;
+      }
+    }
+    return { pMin: p * 15, wMin: w * 15, gBlocks: g, leakCount: leaks };
+  }, [state.totDays]);
 
   const setRow = (key: "haveWant" | "dontHaveWant" | "haveDontWant" | "dontHaveDontWant" | "milestones", i: number, v: string) =>
     setState((s) => {
@@ -260,7 +332,7 @@ export default function WorkbookApp() {
           <p>
             This is the companion workbook from <em>How to Create Time</em>, as a tool instead of
             a PDF: the same exercises, in the same order — Have / Want, Ikigai, Goal / Milestones
-            / Tasks, and the Time on Task log.
+            / Tasks, and Time on Task, including the fifteen-minute day grid.
           </p>
           <p>
             <strong>Your answers stay on this device.</strong> Everything you type is saved only
@@ -284,6 +356,7 @@ export default function WorkbookApp() {
           Tasks done: {tasksDone}
           {tasksTotal > 0 ? ` of ${tasksTotal} written` : ""} · Time logged: {totalMinutes} min
           {totalMinutes >= 60 ? ` (${Math.floor(totalMinutes / 60)}h ${totalMinutes % 60}m)` : ""}
+          {` · Grid: P ${totStats.pMin} min · W ${totStats.wMin} min · G ${totStats.gBlocks} blocks`}
         </p>
 
         {/* ---------- 1. Have / Want ---------- */}
@@ -437,7 +510,183 @@ export default function WorkbookApp() {
           <h2>Time on Task</h2>
           <p className="wb-note">
             S Self · Fam Family · Fr Friends · C Career · Fa Faith · G Goal · SO shiny · D
-            distract · O obstacle · X excuse
+            distract · O obstacle · X excuse · Ot Other
+          </p>
+          <p className="wb-note">
+            Sixteen waking hours in fifteen-minute blocks — the workbook&rsquo;s Week 1 page,
+            one sheet per day. <strong>P</strong> — productive: the block did what you marked
+            it for. <strong>W</strong> — wasted: it did not. Code on the line. Log a typical
+            week; do not fix the week while you log it.
+          </p>
+          {(() => {
+            const idx = Math.min(totDayIdx, state.totDays.length - 1);
+            const day = state.totDays[idx];
+            let p = 0,
+              w = 0,
+              g = 0,
+              leaks = 0;
+            for (let i = 0; i < 64; i++) {
+              const b = day.blocks[String(i)];
+              if (!b || !b.mark) continue;
+              if (b.mark === "P") p++;
+              else if (b.mark === "W") w++;
+              if (b.code === "G") g++;
+              if (LEAK_CODES.includes(b.code)) leaks++;
+            }
+            return (
+              <div className="wb-tot">
+                <div className="wb-tot-nav">
+                  <button
+                    type="button"
+                    className="wb-add"
+                    disabled={idx === 0}
+                    onClick={() => setTotDayIdx(idx - 1)}
+                  >
+                    ← Prev day
+                  </button>
+                  <span className="wb-tot-daylabel">
+                    Day {idx + 1} of {state.totDays.length}
+                  </span>
+                  <button
+                    type="button"
+                    className="wb-add"
+                    disabled={idx >= state.totDays.length - 1}
+                    onClick={() => setTotDayIdx(idx + 1)}
+                  >
+                    Next day →
+                  </button>
+                  <button
+                    type="button"
+                    className="wb-add"
+                    onClick={() => {
+                      setState((s) => ({ ...s, totDays: [...s.totDays, blankTotDay()] }));
+                      setTotDayIdx(state.totDays.length);
+                    }}
+                  >
+                    + Add a day
+                  </button>
+                  {state.totDays.length > 1 && (
+                    <button
+                      type="button"
+                      className="wb-remove"
+                      aria-label="Remove this day sheet"
+                      title="Remove this day sheet"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Remove this day sheet? Its blocks will be deleted."
+                          )
+                        ) {
+                          setState((s) => ({
+                            ...s,
+                            totDays: s.totDays.filter((_, j) => j !== idx),
+                          }));
+                          setTotDayIdx(Math.max(0, idx - 1));
+                        }
+                      }}
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+                <div className="wb-namedate">
+                  <label>
+                    Date
+                    <input
+                      className="wb-input"
+                      type="date"
+                      value={day.date}
+                      onChange={(e) => setTotDay(idx, { date: e.target.value })}
+                    />
+                  </label>
+                  <label>
+                    Day
+                    <input
+                      className="wb-input"
+                      type="text"
+                      value={day.day}
+                      onChange={(e) => setTotDay(idx, { day: e.target.value })}
+                    />
+                  </label>
+                  <label>
+                    Cycle #
+                    <input
+                      className="wb-input"
+                      type="text"
+                      inputMode="numeric"
+                      value={day.cycle}
+                      onChange={(e) =>
+                        setTotDay(idx, { cycle: e.target.value.replace(/[^0-9]/g, "") })
+                      }
+                    />
+                  </label>
+                </div>
+                <p className="wb-note">
+                  Pick the category, then tap a block: once for <strong>P</strong>, again
+                  for <strong>W</strong>, a third tap clears it. The block keeps the
+                  category it was marked with.
+                </p>
+                <div className="wb-tot-cats" role="group" aria-label="Category for marking blocks">
+                  {CATEGORIES.map((c) => (
+                    <button
+                      key={c.code}
+                      type="button"
+                      className={totCat === c.code ? "wb-tot-cat wb-tot-cat-on" : "wb-tot-cat"}
+                      onClick={() => setTotCat(c.code)}
+                      title={c.label}
+                      aria-pressed={totCat === c.code}
+                    >
+                      {c.code}
+                    </button>
+                  ))}
+                  <span className="wb-tot-catlabel">
+                    {CATEGORIES.find((c) => c.code === totCat)?.label}
+                  </span>
+                </div>
+                <div className="wb-tot-grid">
+                  {BLOCK_TIMES.map((t, i) => {
+                    const b = day.blocks[String(i)];
+                    const marked = !!(b && b.mark);
+                    return (
+                      <button
+                        key={t}
+                        type="button"
+                        className={
+                          marked
+                            ? `wb-tot-block ${b.mark === "P" ? "wb-tot-p" : "wb-tot-w"}`
+                            : "wb-tot-block"
+                        }
+                        onClick={() => cycleBlock(idx, i)}
+                        aria-label={`Block ${t}${marked ? `, ${b.code}, ${b.mark === "P" ? "productive" : "wasted"}` : ", unmarked"}`}
+                      >
+                        <span className="wb-tot-time">{t}</span>
+                        <span className="wb-tot-code">{marked ? b.code : ""}</span>
+                        <span className="wb-tot-mark">{marked ? b.mark : ""}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="wb-total">
+                  Tally — P minutes {p * 15} · W minutes {w * 15} · G blocks {g} ·
+                  D/SO/O/X count {leaks}
+                </p>
+                <label className="wb-field-label" htmlFor="wb-tot-margin">
+                  When you left G, write the sentence here. That sentence is data.
+                </label>
+                <input
+                  id="wb-tot-margin"
+                  className="wb-input wb-input-block"
+                  type="text"
+                  value={day.margin}
+                  onChange={(e) => setTotDay(idx, { margin: e.target.value })}
+                />
+              </div>
+            );
+          })()}
+
+          <h3>Quick log</h3>
+          <p className="wb-note">
+            The short version: single entries instead of the grid.
           </p>
           {state.timeLog.map((r, i) => (
             <div className="wb-timerow" key={i}>
@@ -628,6 +877,7 @@ export default function WorkbookApp() {
         </ul>
 
         <h2>Time on Task</h2>
+        <h3>Quick log</h3>
         <table>
           <thead>
             <tr>
@@ -653,6 +903,46 @@ export default function WorkbookApp() {
         <p>
           <strong>Total time logged:</strong> {totalMinutes} minutes
         </p>
+
+        <h3>Day sheets — fifteen-minute grid</h3>
+        {state.totDays.map((d, di) => {
+          const cells: string[] = [];
+          let p = 0,
+            w = 0,
+            g = 0,
+            leaks = 0;
+          for (let i = 0; i < 64; i++) {
+            const b = d.blocks[String(i)];
+            if (b && b.mark) {
+              cells.push(`${BLOCK_TIMES[i]} ${b.code} ${b.mark}`);
+              if (b.mark === "P") p++;
+              else if (b.mark === "W") w++;
+              if (b.code === "G") g++;
+              if (LEAK_CODES.includes(b.code)) leaks++;
+            }
+          }
+          if (cells.length === 0 && !d.date && !d.day && !d.margin) return null;
+          return (
+            <div key={di}>
+              <h4>
+                Day sheet {di + 1}
+                {d.date ? ` — ${d.date}` : ""}
+                {d.day ? ` (${d.day})` : ""}
+                {d.cycle ? ` · Cycle ${d.cycle}` : ""}
+              </h4>
+              <p>{cells.length > 0 ? cells.join(" · ") : "No blocks marked."}</p>
+              <p>
+                <strong>Tally:</strong> P minutes {p * 15} · W minutes {w * 15} · G blocks{" "}
+                {g} · D/SO/O/X count {leaks}
+              </p>
+              {d.margin ? (
+                <p>
+                  <strong>Left G:</strong> {d.margin}
+                </p>
+              ) : null}
+            </div>
+          );
+        })}
       </div>
     </>
   );
