@@ -22,7 +22,7 @@ const FAQS: Array<[string, string]> = [
   ],
   [
     "I need motivation first.",
-    "You do not need to want to change in order to change, you do not need a desire to change in order to change. Will is first, not passion. You do not need to love the goal. You are not in love with escaping a fire. You still leave. No speech about passion. No permission from the room.",
+    "Will is first, not passion. You do not need to love the goal. You are not in love with escaping a fire — you still leave.",
   ],
   [
     "I don't know what I want.",
@@ -200,8 +200,7 @@ export function H2CTPage() {
             about seventy-five percent more time than when you started
           </strong>{" "}
           — time that used to be Other, excuses, and repeats. The clock does not
-          change and the output does. Same twenty-four. Magnitudes more of
-          Don&apos;t Have and Want.
+          change and the output does. Same twenty-four. More Don&apos;t Have and Want, less Other.
         </p>
 
         <p>
@@ -284,14 +283,11 @@ export function H2CTPage() {
             <p>
               He&apos;s been GM, VP, interim CEO — managing coders and IT workers (not always
               the best communicators) and running performance reviews for a living. He has
-              studied hypnosis, NLP, sales, and performance. He&apos;s been doing all of it for decades,
-              and he still does: private coaching, and a company that makes weapons components for
-              the U.S. Navy.
+              studied hypnosis, NLP, sales, and performance. Decades of it, and he still does it — private coaching, and a company making weapons components for the U.S. Navy.
             </p>
 
             <p>
-              The book is what those rooms have in common: five-figure strategic-vision
-              coaching for CEOs and owners, distilled for the person who ran out of week.
+              The book is what those rooms have in common: the executive version of this work, rebuilt for the person who ran out of week.
               Time creation for the rest of us.
             </p>
           </div>
