@@ -1,19 +1,19 @@
 name: Billing / refund / receipt
-description: Charge, refund, receipt, or portal access — portal first
-title: "[billing] Portal / refund / receipt"
+description: Charge, refund, or receipt — invocationinc.com/billing first
+title: "[billing] Charge / refund / receipt"
 labels: ["billing"]
 body:
   - type: markdown
     attributes:
       value: |
-        Send them to the Stripe customer portal first. Escalate to Owner Desk only if portal cannot resolve.
+        Send them to https://invocationinc.com/billing first. Escalate to Owner Desk only if that cannot resolve it.
   - type: dropdown
     id: portal_tried
     attributes:
-      label: Did they try the customer portal?
+      label: Did they try invocationinc.com/billing?
       options:
         - Yes — still blocked
-        - No — need portal link
+        - No — need billing link
         - Unsure
     validations:
       required: true
