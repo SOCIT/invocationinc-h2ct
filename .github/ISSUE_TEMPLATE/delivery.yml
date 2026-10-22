@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Check Stripe receipt email first. Escalate to Owner Desk only after portal + resend fail.
+        Check Stripe receipt email first. Escalate to Owner Desk only after the billing page + resend fail.
   - type: input
     id: email
     attributes:

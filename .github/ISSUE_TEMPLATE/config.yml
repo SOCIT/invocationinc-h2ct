@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Stripe customer portal
-    url: https://billing.stripe.com/p/login
-    about: Receipts, refunds, and payment method — try the portal before opening billing.
+  - name: Invocation Inc billing
+    url: https://invocationinc.com/billing
+    about: Receipts, refunds, and payment method — start at invocationinc.com/billing before opening a billing issue.
