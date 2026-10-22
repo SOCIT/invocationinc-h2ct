@@ -14,7 +14,7 @@ The live page is `src/components/H2CTPage.tsx`. Gates, disclaimers, the chapter 
 
 No second SKU. No workbook-only button. No strike price. No countdown. Checkout product id: `book` only.
 
-`STRIPE_PRICE_BOOK` is the live one-time price `price_1UMYUhPj4KYXkIe0TGmkKkU7` (**999** cents, $9.99). Checkout does not read `STRIPE_PRICE_RUNG2`.
+`STRIPE_PRICE_BOOK` is the live one-time price `price_1UMYUhPj4KYXkIe0TGmkKkU7` (**999** cents, $9.99). Checkout reads that variable only. There is no strike price and no second amount.
 
 The buy button always renders. If Stripe env is missing, `/api/checkout` returns `503` with `checkout_not_configured`.
 
