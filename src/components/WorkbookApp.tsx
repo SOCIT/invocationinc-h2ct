@@ -180,11 +180,25 @@ export default function WorkbookApp() {
     setState((s) => {
       const next = [...s[key]];
       next[i] = v;
-      return { ...s, [key]: next };
+      // One-goal rule: while the Goal field still mirrors the circle, editing
+      // the circled item's text updates the Goal field too — no stale goal.
+      // Once the user edits the Goal field itself (goalEdited), it is theirs.
+      const syncGoal =
+        key === "dontHaveWant" && s.goalIndex === i && !s.goalEdited ? { goal: v } : {};
+      return { ...s, [key]: next, ...syncGoal };
     });
 
+  /** Paper row counts — lists stop growing where the paper sheet stops. */
+  const PAPER_MAX = {
+    haveWant: 7,
+    dontHaveWant: 7,
+    haveDontWant: 7,
+    dontHaveDontWant: 7,
+    milestones: 5,
+  } as const;
+
   const addRow = (key: "haveWant" | "dontHaveWant" | "haveDontWant" | "dontHaveDontWant" | "milestones") =>
-    setState((s) => ({ ...s, [key]: [...s[key], ""] }));
+    setState((s) => (s[key].length >= PAPER_MAX[key] ? s : { ...s, [key]: [...s[key], ""] }));
 
   const setIkigaiRow = (section: keyof Ikigai, i: number, v: string) =>
     setState((s) => {
@@ -194,14 +208,29 @@ export default function WorkbookApp() {
     });
 
   const addIkigaiRow = (section: keyof Ikigai) =>
-    setState((s) => ({ ...s, ikigai: { ...s.ikigai, [section]: [...s.ikigai[section], ""] } }));
+    setState((s) =>
+      s.ikigai[section].length >= 7
+        ? s
+        : { ...s, ikigai: { ...s.ikigai, [section]: [...s.ikigai[section], ""] } }
+    );
 
-  const circleGoal = (i: number) =>
+  const circleGoal = (i: number) => {
+    if (state.goalIndex === i) return; // already the goal — a circle never un-circles
+    const item = state.dontHaveWant[i] ?? "";
+    if (state.goalEdited && state.goal.trim() !== "" && item !== state.goal) {
+      const ok = window.confirm(
+        `You wrote your own goal in the Goal field ("${state.goal}"). Replace it with the item you just circled ("${item}")?`
+      );
+      if (!ok) return; // keep the old circle and the user's own goal text
+      setState((s) => ({ ...s, goalIndex: i, goal: item, goalEdited: false }));
+      return;
+    }
     setState((s) => ({
       ...s,
       goalIndex: i,
       goal: s.goalEdited ? s.goal : s.dontHaveWant[i] ?? s.goal,
     }));
+  };
 
   const totalMinutes = useMemo(
     () =>
@@ -267,9 +296,11 @@ export default function WorkbookApp() {
           />
         </div>
       ))}
-      <button type="button" className="wb-add" onClick={() => addRow(key)}>
-        + Add a row
-      </button>
+      {state[key].length < PAPER_MAX[key] && (
+        <button type="button" className="wb-add" onClick={() => addRow(key)}>
+          + Add a row
+        </button>
+      )}
     </div>
   );
 
@@ -288,9 +319,11 @@ export default function WorkbookApp() {
           />
         </div>
       ))}
-      <button type="button" className="wb-add" onClick={() => addIkigaiRow(section)}>
-        + Add a row
-      </button>
+      {state.ikigai[section].length < 7 && (
+        <button type="button" className="wb-add" onClick={() => addIkigaiRow(section)}>
+          + Add a row
+        </button>
+      )}
     </div>
   );
 
@@ -385,7 +418,7 @@ export default function WorkbookApp() {
           {ikigaiSection("What the world needs", "worldNeeds")}
           {ikigaiSection("What you can be paid for", "paidFor")}
           <label className="wb-field-label" htmlFor="wb-middle">
-            The middle
+            The middle — extra note (not on the paper sheet)
           </label>
           <textarea
             id="wb-middle"
@@ -454,9 +487,11 @@ export default function WorkbookApp() {
               />
             </div>
           ))}
-          <button type="button" className="wb-add" onClick={() => addRow("milestones")}>
-            + Add a milestone
-          </button>
+          {state.milestones.length < 5 && (
+            <button type="button" className="wb-add" onClick={() => addRow("milestones")}>
+              + Add a milestone
+            </button>
+          )}
           <p className="wb-note">A milestone tells you where you are. Not a vibe.</p>
 
           <h3>Tasks</h3>
@@ -492,15 +527,17 @@ export default function WorkbookApp() {
               />
             </div>
           ))}
-          <button
-            type="button"
-            className="wb-add"
-            onClick={() =>
-              setState((s) => ({ ...s, tasks: [...s.tasks, { text: "", done: false }] }))
-            }
-          >
-            + Add a task
-          </button>
+          {state.tasks.length < 10 && (
+            <button
+              type="button"
+              className="wb-add"
+              onClick={() =>
+                setState((s) => ({ ...s, tasks: [...s.tasks, { text: "", done: false }] }))
+              }
+            >
+              + Add a task
+            </button>
+          )}
           <p className="wb-note">One goal. One rabbit. Everything else waits.</p>
           {nameDate("planName", "planDate")}
         </section>
