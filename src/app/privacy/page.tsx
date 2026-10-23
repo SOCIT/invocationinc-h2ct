@@ -18,10 +18,6 @@ export default function PrivacyPage() {
         </p>
         <h1>Privacy Policy</h1>
         <p>
-          Stub policy for {brand.legalName}. Replace with counsel-reviewed text
-          before launch.
-        </p>
-        <p>
           We collect information you provide when purchasing (such as email and
           billing details processed by Stripe) and email addresses you submit for
           updates. We use this to fulfill orders, send requested updates, and
