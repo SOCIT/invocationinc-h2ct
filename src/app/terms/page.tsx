@@ -18,6 +18,10 @@ export default function TermsPage() {
         </p>
         <h1>Terms of Use</h1>
         <p>
+          Stub terms for {brand.legalName}. Replace with counsel-reviewed text
+          before launch.
+        </p>
+        <p>
           By purchasing digital products from {brand.legalName}, you receive a
           personal, non-transferable license to use the PDFs and companion app
           access for your own learning. Redistribution, resale, or public sharing
