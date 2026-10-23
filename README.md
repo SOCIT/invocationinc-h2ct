@@ -2,7 +2,7 @@
 
 Lean Next.js sales page for **How to Create Time** from **Invocation Inc** (Human Performance Engineers).
 
-The live page is `src/components/H2CTPage.tsx`. Gates, disclaimers, the chapter list, FAQ substance, and the author bio stay as written.
+The live page is `src/components/H2CTPage.tsx`. Gates, the chapter list, FAQ substance, and the author bio stay as written.
 
 `docs/APPROVED-LONGFORM-V2.html` is an older Eight Weeks to Happy longform. It is not served, and it was not edited here.
 

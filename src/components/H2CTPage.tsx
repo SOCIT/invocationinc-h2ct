@@ -373,7 +373,7 @@ export function H2CTPage() {
       </main>
 
       <footer className="lf-footer">
-        <p>© {new Date().getFullYear()} Invocation Inc. Not medical advice.</p>
+        <p>© {new Date().getFullYear()} Invocation Inc.</p>
         <p className="lf-imprint-line">
           <img
             src="/img/invocation-logo.png"
