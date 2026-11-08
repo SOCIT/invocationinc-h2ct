@@ -27,6 +27,10 @@ export function Footer() {
         <Link href="/privacy">Privacy</Link>
         {" · "}
         <Link href="/terms">Terms</Link>
+        {" · "}
+        <Link href="/refund">Refund</Link>
+        {" · "}
+        <Link href="/contact">Contact</Link>
       </p>
     </footer>
   );
