@@ -1,12 +1,12 @@
-name: Timer expired / price mismatch
-description: Offer timer hit zero or checkout price does not match the page
-title: "[timer] Price or countdown mismatch"
+name: Price mismatch
+description: The price on the page does not match checkout
+title: "[price] Page and checkout price mismatch"
 labels: ["content"]
 body:
   - type: markdown
     attributes:
       value: |
-        Live offer is $97 struck / $47 while the clock runs. Do not invent SKUs or executive pricing.
+        The live H2CT system is a flat $9.99. There is no strike price, no countdown, and no price ladder. Checkout must charge that same amount.
   - type: input
     id: seen_price
     attributes:
